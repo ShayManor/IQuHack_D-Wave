@@ -59,5 +59,7 @@ def check_solution(data: list[tuple[str, int, int]]) -> bool:  # (class: str, ti
                     print(f"{cl} at room {room} has {get_students_in_class(students, cl)} students")
             print()
 
+        return True
+
 
 check_solution([("history", 0, 0), ("pe", 1, 0), ("cs", 1, 1), ("physics", 2, 2), ("photography", 2, 2)])
