@@ -10,7 +10,7 @@ def get_students_in_class(students: list, cl: str):
 
 
 # check no classrooms are double booked, number of students that overlap,
-def check_solution(data: list[tuple]) -> bool:  # (class, time, room)
+def check_solution(data: list[tuple[str, int, int]]) -> bool:  # (class: str, time: int, room: int)
     classrooms = {}
     with open('classrooms.csv', 'r') as f:
         reader = csv.reader(f)
