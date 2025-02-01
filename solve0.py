@@ -57,20 +57,22 @@ def create_exam_scheduling_cqm(
             )
     
     # Objective: Minimize exams closer to noon
-    noon_slot = time_slots // 2
-    objective = sum(
-        x[b, t, d] * abs(t - noon_slot)
-        for b in range(num_classes) for t in range(time_slots) for d in range(num_rooms)
-    )
+    # noon_slot = time_slots // 2
+    # objective = sum(
+    #     x[b, t, d] * abs(t - noon_slot)
+    #     for b in range(num_classes) for t in range(time_slots) for d in range(num_rooms)
+    # )
 
     # Penalty: Overlapping student exams
-    penalty_weight = 10  # Adjust as needed
+    # TODO: penalty must scale with number??
     penalty = sum(
         sum(x[b, t, d] for b in student_classes[s] for d in range(num_rooms)) - 1
         for s in range(num_students) for t in range(time_slots)
     )
     
-    cqm.set_objective(objective + penalty_weight * penalty)
+    # TODO: optimize to not waste excess room space
+    cqm.set_objective(PENALTY_WEIGHT * penalty)
+    # cqm.set_objective(objective + penalty_weight * penalty)
     
     return cqm
 #------------------------------------------------------------------------------#
@@ -129,6 +131,8 @@ num_classes = len(classes)
 num_rooms = len(rooms)
 TIME_SLOTS = 10
 
+print(f"Size: {num_students * num_classes * num_rooms * TIME_SLOTS}")
+
 room_capacities = {r.id: r.capacity for r in rooms}
 student_classes = {s.id: s.classes for s in students}
 print("DATA LOADED...")
@@ -151,7 +155,7 @@ print("CQM CREATED...")
 #------------------------------------------------------------------------------#
 # Solve with D-Wave's hybrid CQM solver
 sampler = LeapHybridCQMSampler()
-solutions = sampler.sample_cqm(cqm, time_limit=5)
+solutions = sampler.sample_cqm(cqm, time_limit=15)
 print("SOLVED...")
 
 # Filter to feasible solutions
