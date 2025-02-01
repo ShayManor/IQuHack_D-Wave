@@ -145,69 +145,71 @@ def read_room_data(filename):
 
 
 #------------------------------------------------------------------------------#
-students, classes = read_student_data(STUDENT_DATA_FILE)
-rooms = read_room_data(ROOM_DATA_FILE)
+def get_data(weights):
+    students, classes = read_student_data(STUDENT_DATA_FILE)
+    rooms = read_room_data(ROOM_DATA_FILE)
 
-num_students = len(students)
-num_classes = len(classes)
-num_rooms = len(rooms)
-TIME_SLOTS = 10
+    num_students = len(students)
+    num_classes = len(classes)
+    num_rooms = len(rooms)
+    TIME_SLOTS = 10
 
-print(f"Size: {num_classes * num_rooms * TIME_SLOTS}")
+    print(f"Size: {num_classes * num_rooms * TIME_SLOTS}")
 
-room_capacities = {r.id: r.capacity for r in rooms}
-student_classes = {s.id: s.classes for s in students}
-print("DATA LOADED...")
-#------------------------------------------------------------------------------#
-
-
-#------------------------------------------------------------------------------#
-cqm = create_exam_scheduling_cqm(
-    num_students,
-    num_classes,
-    num_rooms,
-    TIME_SLOTS,
-    room_capacities,
-    student_classes,
-)
-print("CQM CREATED...")
-#------------------------------------------------------------------------------#
+    room_capacities = {r.id: r.capacity for r in rooms}
+    student_classes = {s.id: s.classes for s in students}
+    print("DATA LOADED...")
+    #------------------------------------------------------------------------------#
 
 
-#------------------------------------------------------------------------------#
-# Solve with D-Wave's hybrid CQM solver
-sampler = LeapHybridCQMSampler()
-solutions = sampler.sample_cqm(cqm, time_limit=5)
-print("SOLVED...")
-
-# Filter to feasible solutions
-feasaible = solutions.filter(lambda row: row.is_feasible)
-print("FEASIBLE SOLUTIONS...")
-
-# Extract results
-if len(feasaible) == 0:
-    print("No feasible solutions found.")
-else:
-    # for datum in feasaible.data(fields=['sample', 'energy']):   
-    #     pprint.pprint(datum)
-
-    best_sample = feasaible.first.sample
-    schedule = [k for k, val in best_sample.items() if val == 1]
-    print("Optimized Exam Schedule:")
-    print(schedule)
-
-    data = []  # list[(class, time, room)]
-
-    for row in schedule:
-        # x_b_t_d
-        b, t, d = row.split('_')[1:]
-        clas = classes[int(b)]
-        time = int(t)
-        room = int(d)
-        data.append((clas, time, room))
-
-    check_solution.check_solution(data)
-#------------------------------------------------------------------------------#
+    #------------------------------------------------------------------------------#
+    cqm = create_exam_scheduling_cqm(
+        num_students,
+        num_classes,
+        num_rooms,
+        TIME_SLOTS,
+        room_capacities,
+        student_classes,
+    )
+    print("CQM CREATED...")
+    #------------------------------------------------------------------------------#
 
 
-print("DONE.")
+    #------------------------------------------------------------------------------#
+    # Solve with D-Wave's hybrid CQM solver
+    sampler = LeapHybridCQMSampler()
+    solutions = sampler.sample_cqm(cqm, time_limit=3)
+    print("SOLVED...")
+
+    # Filter to feasible solutions
+    feasaible = solutions.filter(lambda row: row.is_feasible)
+    print("FEASIBLE SOLUTIONS...")
+
+    # Extract results
+    if len(feasaible) == 0:
+        print("No feasible solutions found.")
+    else:
+        # for datum in feasaible.data(fields=['sample', 'energy']):
+        #     pprint.pprint(datum)
+
+        best_sample = feasaible.first.sample
+        schedule = [k for k, val in best_sample.items() if val == 1]
+        print("Optimized Exam Schedule:")
+        print(schedule)
+
+        data = []  # list[(class, time, room)]
+
+        for row in schedule:
+            # x_b_t_d
+            b, t, d = row.split('_')[1:]
+            clas = classes[int(b)]
+            time = int(t)
+            room = int(d)
+            data.append((clas, time, room))
+
+        check_solution.check_solution(data)
+        return data
+    #------------------------------------------------------------------------------#
+
+
+    print("DONE.")
