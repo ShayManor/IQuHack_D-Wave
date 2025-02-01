@@ -90,7 +90,6 @@ def create_exam_scheduling_cqm(
         for d in range(num_rooms)
     )
 
-    # TODO: optimize to not waste excess room space
     cqm.set_objective(
         OBJECTIVE_WEIGHT * objective +
         PENALTY_OVERLAPPING * penalty_overlapping +
