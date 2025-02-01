@@ -3,16 +3,24 @@ print("STARTING...")
 import dimod
 from dwave.system import LeapHybridCQMSampler
 # import pprint
+import csv
+#------------------------------------------------------------------------------#
 
+#------------------------------------------------------------------------------#
 PENALTY_WEIGHT = 50.0
 
+STUDENT_DATA_FILE = 'students.csv'
+ROOM_DATA_FILE = 'classrooms.csv'
+#------------------------------------------------------------------------------#
+
+
+#------------------------------------------------------------------------------#
 def create_exam_scheduling_cqm(
     num_students,
     num_classes, 
-    classes_per_student, 
     num_rooms, 
+    time_slots,
     room_capacity, 
-    time_slots, 
     student_classes
 ):
     cqm = dimod.ConstrainedQuadraticModel()
@@ -31,11 +39,11 @@ def create_exam_scheduling_cqm(
             label=f'class_{b}_assigned_once'
         )
         
-    # Constraint 3: Room capacity must not be exceeded
+    # Constraint 2: Room capacity must not be exceeded
     for t in range(time_slots):
         for d in range(num_rooms):
             cqm.add_constraint(
-                sum(x[b, t, d] * len([s for s in range(num_students) if b in student_classes[s]]) for b in range(num_classes)) <= room_capacity,
+                sum(x[b, t, d] * len([s for s in range(num_students) if b in student_classes[s]]) for b in range(num_classes)) <= room_capacity[d],
                 label=f'room_{d}_capacity_t{t}'
             )
     
@@ -56,31 +64,82 @@ def create_exam_scheduling_cqm(
     cqm.set_objective(objective + penalty_weight * penalty)
     
     return cqm
+#------------------------------------------------------------------------------#
 
-# Example problem parameters
-NUM_STUDENTS = 10       # A
-NUM_CLASSES = 5         # B
-CLASSES_PER_STUDENT = 2 # C
-NUM_ROOMS = 2           # D
-ROOM_CAPACITY = 10      # E
-TIME_SLOTS = 10         # T
 
-# Randomly assigning students to classes
-import random
-student_classes = {s: random.sample(range(NUM_CLASSES), CLASSES_PER_STUDENT) for s in range(NUM_STUDENTS)}
+#------------------------------------------------------------------------------#
+class Student:
+    def __init__(self, id, classes):
+        self.id = id
+        self.classes = classes # list of class ids
 
-# Create CQM model
+class Room:
+    def __init__(self, id, capacity):
+        self.id = id
+        self.capacity = capacity
+
+def read_student_data(filename):
+    all_classes = [] # list[str]
+    all_students = [] # list[Student]
+    with open(filename, 'r') as f:
+        reader = csv.reader(f)
+        next(reader, None)
+        for row in reader:
+            student_id = int(row[0])
+
+            student_classes = row[1].split(',')
+            for c in student_classes:
+                if c not in all_classes:
+                    all_classes.append(c)
+            
+            student_classes = [all_classes.index(c) for c in student_classes]
+            all_students.append(Student(student_id, student_classes))
+
+    return all_students, all_classes
+
+def read_room_data(filename):
+    all_rooms = [] # list[Room]
+    with open(filename, 'r') as f:
+        reader = csv.reader(f)
+        next(reader, None)
+        for row in reader:
+            room_id = int(row[0])
+            room_capacity = int(row[1])
+            all_rooms.append(Room(room_id, room_capacity))
+    
+    return all_rooms
+#------------------------------------------------------------------------------#
+
+
+#------------------------------------------------------------------------------#
+students, classes = read_student_data(STUDENT_DATA_FILE)
+rooms = read_room_data(ROOM_DATA_FILE)
+
+num_students = len(students)
+num_classes = len(classes)
+num_rooms = len(rooms)
+TIME_SLOTS = 10
+
+room_capacities = {r.id: r.capacity for r in rooms}
+student_classes = {s.id: s.classes for s in students}
+print("DATA LOADED...")
+#------------------------------------------------------------------------------#
+
+
+#------------------------------------------------------------------------------#
 cqm = create_exam_scheduling_cqm(
-    NUM_STUDENTS,
-    NUM_CLASSES,
-    CLASSES_PER_STUDENT,
-    NUM_ROOMS,
-    ROOM_CAPACITY,
+    num_students,
+    num_classes,
+    num_rooms,
     TIME_SLOTS,
+    room_capacities,
     student_classes,
 )
 print("CQM CREATED...")
+#------------------------------------------------------------------------------#
 
+
+#------------------------------------------------------------------------------#
 # Solve with D-Wave's hybrid CQM solver
 sampler = LeapHybridCQMSampler()
 solutions = sampler.sample_cqm(cqm, time_limit=5)
@@ -101,7 +160,7 @@ else:
     schedule = [k for k, val in best_sample.items() if val == 1]
     print("Optimized Exam Schedule:")
     print(schedule)
-
+#------------------------------------------------------------------------------#
 
 
 print("DONE.")
