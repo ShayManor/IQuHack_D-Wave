@@ -9,8 +9,10 @@ import check_solution
 #------------------------------------------------------------------------------#
 
 #------------------------------------------------------------------------------#
-PENALTY_OVERLAPPING = 50.0
-PENALTY_CAPACITY = 5.0
+OBJECTIVE_WEIGHT = 1
+
+PENALTY_OVERLAPPING = 50
+PENALTY_CAPACITY = 2
 
 STUDENT_DATA_FILE = 'students.csv'
 ROOM_DATA_FILE = 'classrooms.csv'
@@ -80,7 +82,7 @@ def create_exam_scheduling_cqm(
 
     # Penalty 2: Excess room capacity
     penalty_capacity = sum(
-        x[b, t, d] * len([s for s in range(num_students) if b in student_classes[s]]) - room_capacity[d]
+        x[b, t, d] * abs(len([s for s in range(num_students) if b in student_classes[s]]) - room_capacity[d]) ** 1.2
         for b in range(num_classes)
         for t in range(time_slots)
         for d in range(num_rooms)
@@ -88,7 +90,7 @@ def create_exam_scheduling_cqm(
 
     # TODO: optimize to not waste excess room space
     cqm.set_objective(
-        objective + 
+        OBJECTIVE_WEIGHT * objective +
         PENALTY_OVERLAPPING * penalty_overlapping + 
         PENALTY_CAPACITY * penalty_capacity
     )
