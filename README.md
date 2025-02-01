@@ -1,1 +1,3 @@
-# IQuHack_D-Wave
+# iQuHACK 2025: D-Wave
+
+WE WILL WIN
