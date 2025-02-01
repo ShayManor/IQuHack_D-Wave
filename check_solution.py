@@ -81,7 +81,3 @@ def check_solution(data: list[tuple[str, int, int]], days):  # (class: str, time
                         "day": int(time / 6) + 1
                     })
         return {"schedule": schedule, "overlaps": overlap_count}
-
-
-if __name__ == '__main__':
-    check_solution([("history", 0, 0), ("pe", 1, 0), ("cs", 1, 1), ("physics", 2, 2), ("photography", 2, 2)])

@@ -22,7 +22,7 @@ def students():
 @app.route("/make-schedule", methods=['POST'])
 def make_schedule():
     weights = request.json
-    return jsonify(get_data(weights))
+    return get_data(weights), {'Content-Type': 'application/json'}
 
 
 if __name__ == "__main__":

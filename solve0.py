@@ -6,6 +6,7 @@ import numpy as np
 
 import csv
 
+import flask
 import check_solution
 
 
@@ -150,9 +151,11 @@ def read_room_data(filename):
 
 #------------------------------------------------------------------------------#
 def get_data(weights):
+    yield flask.jsonify({"status": "Starting scheduling..."})
     print("STARTING SCHEDULING...")
 
     #------------------------------------------------------------------------------#
+    yield flask.jsonify({"status": "Loading user data..."})
     print("LOADING DATA...")
     days = weights['days']
     students, classes = read_student_data(STUDENT_DATA_FILE)
@@ -166,10 +169,12 @@ def get_data(weights):
     room_capacities = {r.id: r.capacity for r in rooms}
     student_classes = {s.id: s.classes for s in students}
 
+    yield flask.jsonify({"status": "Data loaded..."})
     print("DATA LOADED...")
     #------------------------------------------------------------------------------#
 
     #------------------------------------------------------------------------------#
+    yield flask.jsonify({"status": "Creating the Constrained Quadratic Model..."})
     print("CREATING CQM...")
     cqm = create_exam_scheduling_cqm(
         num_students,
@@ -181,42 +186,46 @@ def get_data(weights):
         student_classes,
         weights["weights"]
     )
+    yield flask.jsonify({"status": "Constrained Quadratic Model created..."})
     print("CQM CREATED...")
     #------------------------------------------------------------------------------#
 
     #------------------------------------------------------------------------------#
+    yield flask.jsonify({"status": "Submitting to solver..."})
     print("SUBMITTING TO SOLVER...")
     # Solve with D-Wave's hybrid CQM solver
     sampler = LeapHybridCQMSampler()
     solutions = sampler.sample_cqm(cqm, time_limit=5)
     print("SOLVED...")
 
+    yield flask.jsonify({"status": "Filtering solutions..."})
     print("FILTERING SOLUTIONS...")
     # Filter to feasible solutions
     feasaible = solutions.filter(lambda row: row.is_feasible)
     print("FEASIBLE SOLUTIONS...")
 
-    # Extract results
     if len(feasaible) == 0:
+        yield flask.jsonify({"status": "No feasible solutions found."})
         print("No feasible solutions found.")
-    else:
-        # for datum in feasaible.data(fields=['sample', 'energy']):
-        #     pprint.pprint(datum)
+        return
 
-        best_sample = feasaible.first.sample
-        schedule = [k for k, val in best_sample.items() if val == 1]
-        print("Optimized Exam Schedule:")
-        print(schedule)
 
-        data = []  # list[(class, time, room)]
+    best_sample = feasaible.first.sample
+    schedule = [k for k, val in best_sample.items() if val == 1]
+    print("Optimized Exam Schedule:")
+    print(schedule)
 
-        for row in schedule:
-            # x_b_t_d
-            b, t, d = row.split('_')[1:]
-            clas = classes[int(b)]
-            time = int(t)
-            room = int(d)
-            data.append((clas, time, room))
+    data = []  # list[(class, time, room)]
 
-        return check_solution.check_solution(data, days)
+    for row in schedule:
+        # x_b_t_d
+        b, t, d = row.split('_')[1:]
+        clas = classes[int(b)]
+        time = int(t)
+        room = int(d)
+        data.append((clas, time, room))
+
+    
+    yield flask.jsonify({"status": "Assembling final schedule..."})
+    yield flask.jsonify(check_solution.check_solution(data, days))
     #------------------------------------------------------------------------------#
