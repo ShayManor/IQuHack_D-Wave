@@ -178,7 +178,7 @@ def main():
     # sampler = ExactCQMSolver()
 
     print("Submitting the CQM to the solver...")
-    solution = sampler.sample_cqm(cqm, time_limit=30)
+    solution = sampler.sample_cqm(cqm, time_limit=10)
 
     # Filter to the feasible solutions.
     feasible_sampleset = solution.filter(lambda d: d.is_feasible)
@@ -193,8 +193,7 @@ def main():
     schedule = {}
     for (c, t, r), var in x.items():
         # Here we check if the value is at least 0.5.
-        # if best_sample.get(str(var), 0) >= 0.5:
-        if var == 1:
+        if best_sample.get(str(var), 0) >= 0.5:
             if c not in schedule:
                 schedule[c] = (t, r)
 
