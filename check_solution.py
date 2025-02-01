@@ -34,7 +34,7 @@ def check_solution(data: list[tuple[str, int, int]]) -> bool:  # (class: str, ti
             times_cl.append((time, cl))
             if time not in total_times:
                 total_times.append(time)
-        sorted(total_times)
+        total_times.sort()
 
         # check each time has no student overlaps
         overlap_count = 0
