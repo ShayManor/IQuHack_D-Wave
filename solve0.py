@@ -16,6 +16,9 @@ PENALTY_CAPACITY = 2
 
 STUDENT_DATA_FILE = 'students.csv'
 ROOM_DATA_FILE = 'classrooms.csv'
+
+TIME_SLOTS_PER_DAY = 6
+DAYS = 5
 #------------------------------------------------------------------------------#
 
 
@@ -24,18 +27,21 @@ def create_exam_scheduling_cqm(
         num_students,
         num_classes,
         num_rooms,
-        time_slots,
+        time_slots_per_day,
+        days,
         room_capacity,
         student_classes
 ):
+    time_slots = time_slots_per_day * days
+
     cqm = dimod.ConstrainedQuadraticModel()
 
     # Decision Variables: x[b, t, d] -> 1 if class b is scheduled at time t in room d
     x = {(b, t, d): dimod.Binary(f'x_{b}_{t}_{d}')
-         for b in range(num_classes)
-         for t in range(time_slots)
-         for d in range(num_rooms)
-         }
+            for b in range(num_classes)
+            for t in range(time_slots)
+            for d in range(num_rooms)
+        }
 
     # Constraint 1: Each class must be assigned exactly once
     for b in range(num_classes):
@@ -62,9 +68,10 @@ def create_exam_scheduling_cqm(
             )
 
     # Objective 1: Minimize exams closer to noon
-    noon_slot = time_slots // 2
+    noon_slot = time_slots_per_day // 2
     objective = sum(
-        x[b, t, d] * abs(t - noon_slot) * len([s for s in range(num_students) if b in student_classes[s]])
+        x[b, t, d] * abs(t % time_slots_per_day - noon_slot)
+            * len([s for s in range(num_students) if b in student_classes[s]])
         for b in range(num_classes)
         for t in range(time_slots)
         for d in range(num_rooms)
@@ -151,12 +158,14 @@ rooms = read_room_data(ROOM_DATA_FILE)
 num_students = len(students)
 num_classes = len(classes)
 num_rooms = len(rooms)
-TIME_SLOTS = 10
 
-print(f"Size: {num_classes * num_rooms * TIME_SLOTS}")
+print(f"Size: {num_classes * num_rooms * TIME_SLOTS_PER_DAY * DAYS}")
 
 room_capacities = {r.id: r.capacity for r in rooms}
 student_classes = {s.id: s.classes for s in students}
+
+time_preferences = {} # time_preferences[time_slot] = weight``
+
 print("DATA LOADED...")
 #------------------------------------------------------------------------------#
 
@@ -166,7 +175,8 @@ cqm = create_exam_scheduling_cqm(
     num_students,
     num_classes,
     num_rooms,
-    TIME_SLOTS,
+    TIME_SLOTS_PER_DAY,
+    DAYS,
     room_capacities,
     student_classes,
 )
