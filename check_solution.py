@@ -18,7 +18,7 @@ def get_overlap(students: list, cl1: str, cl2: str):
 
 
 # check no classrooms are double booked, number of students that overlap,
-def check_solution(data: list[tuple[str, int, int]]):  # (class: str, time: int, room: int)
+def check_solution(data: list[tuple[str, int, int]], days):  # (class: str, time: int, room: int)
     classrooms = {}
     with open('classrooms.csv', 'r') as f:
         reader = csv.reader(f)
@@ -76,7 +76,9 @@ def check_solution(data: list[tuple[str, int, int]]):  # (class: str, time: int,
                     schedule.append({
                         "subject": cl,
                         "room": room,
-                        "students": get_students_in_class(students, cl)
+                        "students": get_students_in_class(students, cl),
+                        "time": time % 6,
+                        "day": int(time / 6) + 1
                     })
         return {"schedule": schedule, "overlaps": overlap_count}
 

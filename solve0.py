@@ -71,7 +71,7 @@ def create_exam_scheduling_cqm(
 
     # Objective 1: Minimize exams closer to noon
     objective = sum(
-        x[b, t, d] * weights[t % time_slots_per_day] * class_student_counts[b]
+        x[b, t, d] * -weights[t % time_slots_per_day] * class_student_counts[b]
         for b in range(num_classes)
         for t in range(time_slots)
         for d in range(num_rooms)
@@ -150,7 +150,7 @@ def read_room_data(filename):
 
 #------------------------------------------------------------------------------#
 def get_data(weights):
-    print("STARTING SCHDULING...")
+    print("STARTING SCHEDULING...")
 
     #------------------------------------------------------------------------------#
     print("LOADING DATA...")
@@ -218,6 +218,5 @@ def get_data(weights):
             room = int(d)
             data.append((clas, time, room))
 
-        check_solution.check_solution(data)
-        return data
+        return check_solution.check_solution(data, days)
     #------------------------------------------------------------------------------#
