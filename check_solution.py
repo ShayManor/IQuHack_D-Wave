@@ -54,7 +54,7 @@ def check_solution(data: list[tuple[str, int, int]]) -> bool:  # (class: str, ti
                 if cl1[0] == cl2[0] and cl1[1] != cl2[1]:
                     overlap_count += get_overlap(students, cl1[1], cl2[1])
         overlap_count /= 2
-        print(f"Number of overlapping students: {overlap_count}")
+        print(f"Number of overlaps: {overlap_count}")
 
         #   Check that room is never too full
         for cl, time, room in data:
