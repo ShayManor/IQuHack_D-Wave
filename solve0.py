@@ -164,8 +164,6 @@ print(f"Size: {num_classes * num_rooms * TIME_SLOTS_PER_DAY * DAYS}")
 room_capacities = {r.id: r.capacity for r in rooms}
 student_classes = {s.id: s.classes for s in students}
 
-time_preferences = {} # time_preferences[time_slot] = weight``
-
 print("DATA LOADED...")
 #------------------------------------------------------------------------------#
 
