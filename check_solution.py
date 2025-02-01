@@ -32,14 +32,15 @@ def check_solution(data: list[tuple[str, int, int]]) -> bool:  # (class: str, ti
         for row in reader:
             students.append([row[0], row[1:][0].split(',')])
         times_cl = []
-        times_classroom = []
+
         total_times = []
         total_classes = []
         for cl, time, room in data:
-            total_classes.append(cl)
-            if (time, room) in times_classroom:
-                print(f"Room {room} is occupied by two classes at once")
-                return False
+            for cl2, time2, room2 in data:
+                if time == time2 and room == room2 and cl != cl2:
+                    print(f"Room {room} is occupied by two classes at once")
+                    return False
+                total_classes.append(cl)
             times_cl.append((time, cl))
             if time not in total_times:
                 total_times.append(time)
@@ -47,10 +48,10 @@ def check_solution(data: list[tuple[str, int, int]]) -> bool:  # (class: str, ti
 
         # check each time has no student overlaps
         overlap_count = 0
-        for cl1 in total_classes:
-            for cl2 in total_classes:
-                if cl1 != cl2:
-                    overlap_count += get_overlap(students, cl1, cl2)
+        for cl1 in times_cl:
+            for cl2 in times_cl:
+                if cl1[0] == cl2[0] and cl1[1] != cl2[1]:
+                    overlap_count += get_overlap(students, cl1[1], cl2[1])
         overlap_count /= 2
         print(f"Number of overlapping students: {overlap_count}")
 
