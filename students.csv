@@ -1,501 +1,501 @@
-id,classes
-0,"french,math,physics,spanish,english,health,history"
-1,"art,chemistry,history,physics,cs,japanese,english"
-2,"art,economics,physics,history,biology,pe,health"
-3,"health,japanese,french,pe,history,math,cs"
-4,"french,photography,art,italian,math,pe,history"
-5,"math,french,pe,japanese,spanish,history,health"
-6,"english,math,art,history,french,health,economics"
-7,"cs,math,japanese,pe,biology,health,physics"
-8,"math,photography,spanish,history,chemistry,japanese,physics"
-9,"history,photography,chemistry,art,english,biology,physics"
-10,"math,french,spanish,physics,pe,english,history"
-11,"japanese,french,health,pe,italian,math,history"
-12,"health,spanish,history,math,physics,chemistry,pe"
-13,"spanish,french,photography,pe,economics,cs,health"
-14,"history,physics,chemistry,pe,economics,cs,french"
-15,"health,spanish,photography,japanese,history,french,pe"
-16,"cs,spanish,french,art,pe,history,health"
-17,"health,pe,spanish,math,french,italian,physics"
-18,"health,spanish,japanese,biology,chemistry,art,history"
-19,"pe,physics,history,chemistry,spanish,cs,biology"
-20,"french,art,history,health,spanish,pe,photography"
-21,"spanish,pe,physics,italian,chemistry,photography,economics"
-22,"health,math,biology,spanish,japanese,photography,physics"
-23,"cs,spanish,physics,biology,japanese,english,history"
-24,"history,physics,health,japanese,art,math,chemistry"
-25,"english,photography,french,chemistry,physics,pe,cs"
-26,"french,physics,health,economics,biology,cs,chemistry"
-27,"health,economics,chemistry,english,history,pe,photography"
-28,"pe,health,physics,english,photography,japanese,cs"
-29,"chemistry,art,physics,health,english,pe,history"
-30,"biology,cs,physics,history,spanish,pe,health"
-31,"health,art,cs,history,spanish,pe,biology"
-32,"chemistry,history,cs,italian,physics,french,art"
-33,"health,italian,spanish,physics,japanese,photography,biology"
-34,"pe,photography,biology,chemistry,physics,english,cs"
-35,"cs,french,physics,italian,pe,health,history"
-36,"art,physics,spanish,health,english,italian,history"
-37,"history,health,italian,physics,japanese,french,cs"
-38,"english,health,math,history,pe,italian,chemistry"
-39,"italian,photography,pe,health,chemistry,art,spanish"
-40,"history,physics,japanese,economics,math,italian,chemistry"
-41,"art,english,economics,cs,history,french,physics"
-42,"history,health,japanese,art,economics,photography,french"
-43,"english,physics,japanese,french,cs,health,photography"
-44,"spanish,physics,economics,health,biology,japanese,english"
-45,"spanish,economics,japanese,english,pe,photography,cs"
-46,"japanese,spanish,history,cs,english,chemistry,art"
-47,"history,photography,health,physics,pe,economics,spanish"
-48,"japanese,physics,math,history,english,chemistry,french"
-49,"french,japanese,history,spanish,biology,health,art"
-50,"health,physics,history,english,spanish,photography,art"
-51,"photography,italian,history,art,health,cs,english"
-52,"history,math,chemistry,pe,art,english,economics"
-53,"chemistry,art,spanish,history,japanese,health,pe"
-54,"biology,cs,italian,history,economics,english,photography"
-55,"japanese,art,italian,chemistry,pe,history,physics"
-56,"english,math,chemistry,cs,biology,physics,spanish"
-57,"spanish,chemistry,english,pe,japanese,cs,health"
-58,"history,health,cs,japanese,art,english,pe"
-59,"italian,economics,japanese,history,physics,photography,pe"
-60,"pe,health,art,history,biology,italian,french"
-61,"pe,photography,spanish,health,history,french,physics"
-62,"health,physics,math,cs,biology,japanese,english"
-63,"spanish,french,photography,health,pe,physics,english"
-64,"art,chemistry,physics,health,photography,biology,pe"
-65,"biology,cs,english,french,health,physics,photography"
-66,"photography,physics,health,cs,chemistry,spanish,pe"
-67,"economics,english,art,history,health,physics,chemistry"
-68,"physics,japanese,history,health,biology,english,chemistry"
-69,"french,pe,health,history,math,japanese,photography"
-70,"italian,japanese,pe,history,english,art,cs"
-71,"chemistry,pe,history,math,italian,french,health"
-72,"chemistry,japanese,history,biology,spanish,economics,math"
-73,"physics,pe,history,japanese,art,french,biology"
-74,"chemistry,spanish,physics,economics,photography,english,cs"
-75,"chemistry,physics,health,history,japanese,french,cs"
-76,"english,photography,health,italian,pe,history,economics"
-77,"japanese,health,english,math,art,chemistry,french"
-78,"history,photography,pe,italian,japanese,biology,chemistry"
-79,"physics,japanese,art,english,biology,health,history"
-80,"spanish,pe,physics,english,health,cs,italian"
-81,"history,photography,italian,math,health,spanish,japanese"
-82,"economics,cs,health,history,chemistry,italian,photography"
-83,"economics,chemistry,biology,physics,french,health,english"
-84,"history,physics,english,health,art,spanish,photography"
-85,"history,math,art,cs,photography,physics,economics"
-86,"english,math,history,health,french,pe,photography"
-87,"french,chemistry,history,economics,pe,spanish,english"
-88,"japanese,art,physics,history,math,chemistry,economics"
-89,"biology,art,physics,italian,english,pe,photography"
-90,"pe,spanish,history,art,french,biology,cs"
-91,"art,physics,economics,pe,japanese,spanish,english"
-92,"math,history,economics,cs,physics,japanese,english"
-93,"history,math,chemistry,french,art,economics,english"
-94,"physics,pe,art,spanish,history,biology,photography"
-95,"french,japanese,physics,health,history,pe,photography"
-96,"pe,chemistry,japanese,italian,spanish,math,economics"
-97,"photography,physics,health,economics,history,japanese,cs"
-98,"english,health,physics,italian,pe,japanese,math"
-99,"chemistry,italian,art,photography,health,math,physics"
-100,"history,italian,english,economics,health,art,spanish"
-101,"english,health,art,french,math,history,economics"
-102,"history,spanish,italian,art,english,physics,pe"
-103,"english,economics,health,history,italian,physics,biology"
-104,"japanese,french,physics,biology,history,pe,italian"
-105,"pe,chemistry,health,biology,math,economics,art"
-106,"italian,health,chemistry,physics,french,pe,japanese"
-107,"spanish,health,physics,pe,italian,history,economics"
-108,"pe,japanese,economics,math,health,history,biology"
-109,"history,physics,photography,italian,english,pe,chemistry"
-110,"spanish,pe,physics,italian,health,history,economics"
-111,"chemistry,english,cs,economics,pe,japanese,italian"
-112,"art,math,chemistry,french,health,history,photography"
-113,"cs,math,pe,italian,physics,health,history"
-114,"history,french,italian,physics,health,photography,cs"
-115,"cs,italian,physics,pe,biology,history,chemistry"
-116,"history,english,french,art,pe,math,chemistry"
-117,"biology,math,pe,french,spanish,history,physics"
-118,"italian,french,spanish,english,economics,photography,health"
-119,"history,spanish,italian,math,physics,japanese,pe"
-120,"spanish,cs,physics,french,photography,english,economics"
-121,"pe,history,chemistry,photography,english,math,physics"
-122,"physics,french,photography,economics,pe,art,italian"
-123,"japanese,history,spanish,cs,italian,physics,chemistry"
-124,"chemistry,history,art,biology,economics,spanish,french"
-125,"art,english,pe,health,biology,history,economics"
-126,"photography,health,history,pe,math,chemistry,japanese"
-127,"cs,art,pe,chemistry,biology,history,health"
-128,"italian,math,art,history,physics,health,japanese"
-129,"cs,pe,physics,economics,art,biology,french"
-130,"spanish,economics,history,health,chemistry,art,physics"
-131,"english,economics,art,pe,math,health,biology"
-132,"art,physics,english,italian,economics,photography,math"
-133,"chemistry,japanese,english,physics,photography,pe,art"
-134,"japanese,french,physics,pe,art,health,history"
-135,"math,english,economics,french,japanese,health,history"
-136,"history,cs,physics,french,pe,economics,math"
-137,"photography,japanese,cs,economics,italian,health,physics"
-138,"pe,math,physics,cs,history,art,economics"
-139,"pe,history,math,health,photography,italian,art"
-140,"japanese,pe,physics,history,english,italian,cs"
-141,"health,physics,italian,spanish,cs,history,art"
-142,"chemistry,history,economics,physics,biology,english,pe"
-143,"history,physics,chemistry,spanish,french,pe,photography"
-144,"cs,economics,math,english,pe,chemistry,physics"
-145,"math,cs,health,english,biology,italian,history"
-146,"cs,pe,art,health,japanese,chemistry,economics"
-147,"physics,chemistry,health,cs,italian,art,french"
-148,"physics,italian,french,pe,cs,english,biology"
-149,"photography,history,english,physics,health,chemistry,pe"
-150,"math,history,physics,japanese,health,chemistry,pe"
-151,"italian,french,pe,physics,art,health,biology"
-152,"japanese,history,health,pe,photography,cs,chemistry"
-153,"history,english,italian,biology,health,economics,spanish"
-154,"pe,french,photography,english,economics,chemistry,history"
-155,"french,biology,cs,physics,art,photography,health"
-156,"french,art,english,biology,physics,photography,cs"
-157,"pe,history,physics,chemistry,english,economics,italian"
-158,"spanish,cs,history,english,physics,italian,health"
-159,"photography,spanish,history,french,art,english,pe"
-160,"french,physics,photography,spanish,chemistry,health,cs"
-161,"economics,pe,physics,chemistry,health,spanish,math"
-162,"french,pe,health,history,physics,italian,art"
-163,"history,pe,chemistry,spanish,health,japanese,biology"
-164,"italian,physics,cs,english,history,economics,health"
-165,"history,health,physics,biology,french,photography,economics"
-166,"math,cs,history,italian,physics,biology,art"
-167,"history,math,cs,english,economics,art,japanese"
-168,"health,history,cs,pe,art,biology,italian"
-169,"physics,italian,history,spanish,math,chemistry,cs"
-170,"italian,cs,biology,japanese,economics,spanish,history"
-171,"history,spanish,biology,economics,pe,art,math"
-172,"french,math,spanish,health,economics,pe,history"
-173,"japanese,math,italian,cs,history,physics,chemistry"
-174,"economics,english,cs,biology,health,japanese,pe"
-175,"italian,pe,health,math,history,spanish,french"
-176,"photography,chemistry,english,biology,pe,italian,math"
-177,"biology,history,italian,art,economics,health,math"
-178,"pe,chemistry,health,history,math,english,french"
-179,"photography,spanish,physics,math,japanese,art,health"
-180,"pe,italian,health,japanese,spanish,biology,history"
-181,"cs,economics,physics,photography,health,english,history"
-182,"art,pe,physics,english,japanese,history,math"
-183,"physics,biology,health,art,pe,french,photography"
-184,"history,japanese,pe,physics,chemistry,french,biology"
-185,"math,health,italian,chemistry,art,biology,english"
-186,"economics,physics,cs,pe,history,english,math"
-187,"french,italian,cs,health,photography,chemistry,pe"
-188,"spanish,history,chemistry,economics,biology,physics,art"
-189,"biology,pe,history,economics,japanese,spanish,french"
-190,"history,art,photography,chemistry,health,physics,english"
-191,"history,health,economics,art,japanese,pe,french"
-192,"physics,japanese,biology,pe,history,spanish,french"
-193,"spanish,japanese,math,health,italian,history,economics"
-194,"pe,chemistry,physics,french,japanese,english,health"
-195,"spanish,pe,japanese,cs,health,physics,english"
-196,"chemistry,pe,health,cs,history,physics,biology"
-197,"japanese,biology,history,art,spanish,math,health"
-198,"physics,photography,history,art,english,health,japanese"
-199,"pe,history,french,japanese,health,art,biology"
-200,"pe,cs,history,economics,spanish,photography,art"
-201,"physics,history,biology,health,cs,economics,pe"
-202,"economics,physics,health,history,spanish,italian,photography"
-203,"math,health,japanese,history,physics,cs,french"
-204,"cs,pe,health,art,chemistry,spanish,biology"
-205,"pe,cs,health,economics,history,japanese,art"
-206,"pe,photography,economics,french,cs,math,spanish"
-207,"french,pe,cs,economics,english,history,biology"
-208,"japanese,english,photography,french,italian,history,health"
-209,"history,english,pe,math,french,italian,health"
-210,"history,japanese,art,chemistry,pe,italian,biology"
-211,"pe,physics,health,spanish,french,english,cs"
-212,"english,health,photography,chemistry,history,japanese,italian"
-213,"health,economics,italian,chemistry,history,physics,japanese"
-214,"spanish,chemistry,pe,health,japanese,biology,history"
-215,"biology,french,english,cs,pe,photography,health"
-216,"cs,pe,art,history,math,italian,physics"
-217,"health,physics,math,italian,art,french,biology"
-218,"health,history,physics,photography,cs,math,pe"
-219,"health,history,cs,spanish,english,physics,french"
-220,"pe,history,japanese,math,art,physics,health"
-221,"french,physics,art,history,japanese,math,pe"
-222,"history,health,photography,art,pe,physics,chemistry"
-223,"cs,economics,italian,health,japanese,art,pe"
-224,"pe,history,art,japanese,french,health,spanish"
-225,"physics,cs,history,pe,spanish,photography,economics"
-226,"history,cs,physics,health,biology,photography,math"
-227,"history,cs,pe,physics,health,spanish,japanese"
-228,"health,biology,math,history,english,art,italian"
-229,"physics,biology,economics,history,french,chemistry,math"
-230,"japanese,spanish,italian,economics,history,health,photography"
-231,"chemistry,biology,health,cs,french,economics,history"
-232,"chemistry,english,physics,history,photography,art,japanese"
-233,"spanish,japanese,italian,photography,history,chemistry,art"
-234,"art,history,italian,japanese,biology,photography,physics"
-235,"pe,history,italian,cs,photography,chemistry,biology"
-236,"photography,japanese,pe,art,math,cs,health"
-237,"history,health,physics,biology,art,photography,economics"
-238,"health,art,physics,economics,pe,history,biology"
-239,"physics,health,photography,history,french,biology,economics"
-240,"physics,health,history,italian,japanese,math,cs"
-241,"pe,physics,japanese,math,art,biology,french"
-242,"economics,physics,history,math,chemistry,english,health"
-243,"cs,photography,math,art,physics,history,spanish"
-244,"english,health,pe,photography,spanish,art,french"
-245,"economics,biology,history,physics,french,chemistry,english"
-246,"biology,italian,health,physics,cs,history,art"
-247,"economics,photography,italian,math,history,art,japanese"
-248,"art,chemistry,physics,spanish,photography,japanese,pe"
-249,"physics,italian,art,history,math,japanese,cs"
-250,"pe,history,english,italian,photography,art,physics"
-251,"health,history,english,photography,japanese,physics,pe"
-252,"physics,italian,economics,history,cs,chemistry,pe"
-253,"italian,pe,economics,japanese,art,history,health"
-254,"history,english,economics,physics,health,japanese,photography"
-255,"italian,history,photography,economics,cs,pe,biology"
-256,"photography,pe,english,chemistry,math,history,spanish"
-257,"photography,history,chemistry,health,physics,french,biology"
-258,"math,health,french,history,english,italian,art"
-259,"physics,spanish,health,pe,math,art,history"
-260,"japanese,french,italian,health,biology,pe,spanish"
-261,"biology,physics,japanese,math,spanish,health,french"
-262,"english,biology,health,history,physics,chemistry,spanish"
-263,"chemistry,health,japanese,physics,french,photography,italian"
-264,"chemistry,history,italian,pe,photography,health,spanish"
-265,"pe,history,spanish,chemistry,italian,art,french"
-266,"economics,history,physics,pe,art,health,italian"
-267,"italian,english,art,biology,french,history,physics"
-268,"photography,english,art,physics,cs,health,history"
-269,"history,italian,art,pe,english,chemistry,cs"
-270,"history,art,biology,english,physics,chemistry,health"
-271,"math,history,physics,chemistry,japanese,pe,cs"
-272,"health,english,physics,math,pe,economics,french"
-273,"history,pe,biology,french,art,english,photography"
-274,"history,math,chemistry,pe,french,spanish,photography"
-275,"biology,cs,physics,photography,italian,english,japanese"
-276,"biology,history,economics,english,health,physics,japanese"
-277,"english,physics,economics,french,history,health,italian"
-278,"history,pe,art,italian,photography,physics,health"
-279,"physics,japanese,english,french,pe,art,photography"
-280,"italian,history,english,health,chemistry,physics,math"
-281,"japanese,history,health,economics,chemistry,pe,french"
-282,"chemistry,math,italian,economics,health,biology,physics"
-283,"italian,physics,biology,health,japanese,history,economics"
-284,"french,cs,italian,history,health,pe,biology"
-285,"french,japanese,spanish,health,english,cs,pe"
-286,"physics,english,math,economics,art,french,history"
-287,"spanish,french,english,photography,physics,art,health"
-288,"french,history,english,italian,pe,math,chemistry"
-289,"economics,cs,history,physics,french,english,health"
-290,"spanish,chemistry,english,photography,history,health,physics"
-291,"art,history,health,biology,pe,physics,chemistry"
-292,"pe,chemistry,spanish,english,health,physics,history"
-293,"health,pe,history,spanish,biology,french,photography"
-294,"art,spanish,physics,pe,health,italian,history"
-295,"italian,history,health,spanish,biology,photography,pe"
-296,"pe,japanese,history,math,health,art,chemistry"
-297,"japanese,health,italian,physics,math,history,english"
-298,"art,history,pe,english,health,biology,japanese"
-299,"french,chemistry,biology,physics,japanese,history,italian"
-300,"history,economics,japanese,health,physics,pe,photography"
-301,"history,health,cs,english,french,physics,math"
-302,"economics,japanese,french,pe,health,english,italian"
-303,"art,math,italian,pe,health,physics,french"
-304,"cs,physics,pe,spanish,health,art,english"
-305,"french,health,pe,history,math,italian,physics"
-306,"physics,pe,biology,health,history,photography,art"
-307,"chemistry,history,english,french,italian,biology,math"
-308,"pe,english,health,photography,french,spanish,physics"
-309,"biology,spanish,economics,japanese,cs,chemistry,french"
-310,"japanese,physics,health,english,pe,economics,photography"
-311,"physics,cs,spanish,health,history,french,italian"
-312,"physics,history,pe,spanish,math,english,art"
-313,"cs,english,photography,biology,history,french,pe"
-314,"biology,art,economics,history,math,chemistry,physics"
-315,"health,history,english,photography,french,art,japanese"
-316,"health,physics,japanese,english,art,history,pe"
-317,"japanese,physics,pe,french,history,cs,biology"
-318,"economics,health,physics,biology,chemistry,photography,french"
-319,"history,pe,photography,cs,biology,economics,japanese"
-320,"french,spanish,health,economics,pe,physics,biology"
-321,"health,english,french,biology,spanish,chemistry,math"
-322,"cs,spanish,art,english,chemistry,history,physics"
-323,"spanish,pe,history,cs,art,biology,french"
-324,"japanese,health,history,chemistry,cs,english,italian"
-325,"physics,history,english,health,italian,cs,spanish"
-326,"cs,chemistry,pe,japanese,economics,art,english"
-327,"math,photography,pe,physics,history,spanish,italian"
-328,"biology,history,spanish,french,italian,chemistry,english"
-329,"english,health,photography,japanese,pe,history,french"
-330,"history,biology,economics,chemistry,physics,english,pe"
-331,"cs,art,photography,math,health,biology,spanish"
-332,"art,chemistry,french,japanese,pe,biology,history"
-333,"physics,french,health,pe,english,photography,japanese"
-334,"biology,cs,math,physics,spanish,english,japanese"
-335,"cs,physics,spanish,history,italian,pe,japanese"
-336,"health,math,physics,history,art,economics,pe"
-337,"pe,economics,physics,photography,biology,french,math"
-338,"health,history,economics,cs,spanish,art,pe"
-339,"japanese,spanish,economics,chemistry,health,cs,math"
-340,"art,math,economics,physics,history,pe,chemistry"
-341,"italian,biology,math,history,cs,health,photography"
-342,"physics,health,french,cs,pe,biology,chemistry"
-343,"physics,art,math,health,chemistry,pe,photography"
-344,"french,history,physics,japanese,biology,photography,cs"
-345,"french,photography,english,health,math,history,chemistry"
-346,"italian,art,english,math,pe,health,history"
-347,"photography,history,health,cs,english,economics,math"
-348,"pe,health,art,history,photography,physics,japanese"
-349,"chemistry,biology,art,photography,pe,cs,japanese"
-350,"english,math,biology,photography,physics,health,italian"
-351,"japanese,english,health,biology,photography,economics,pe"
-352,"history,health,french,pe,spanish,english,italian"
-353,"cs,japanese,economics,history,italian,spanish,physics"
-354,"history,pe,biology,math,english,health,spanish"
-355,"history,math,physics,photography,health,biology,pe"
-356,"photography,pe,art,english,biology,health,economics"
-357,"spanish,japanese,photography,economics,italian,french,history"
-358,"history,italian,photography,spanish,cs,health,physics"
-359,"health,cs,french,physics,pe,math,chemistry"
-360,"cs,pe,chemistry,art,history,physics,economics"
-361,"spanish,history,italian,health,french,cs,pe"
-362,"chemistry,biology,history,english,pe,economics,photography"
-363,"history,physics,chemistry,health,pe,french,art"
-364,"physics,pe,biology,history,english,photography,french"
-365,"cs,history,pe,japanese,health,biology,physics"
-366,"health,biology,physics,italian,cs,japanese,french"
-367,"history,economics,french,health,italian,spanish,pe"
-368,"chemistry,spanish,health,math,english,pe,history"
-369,"biology,health,history,pe,physics,photography,math"
-370,"math,health,chemistry,spanish,cs,pe,japanese"
-371,"chemistry,italian,japanese,economics,english,pe,physics"
-372,"french,photography,pe,history,physics,japanese,health"
-373,"history,math,biology,physics,spanish,cs,chemistry"
-374,"history,english,health,italian,cs,french,photography"
-375,"math,italian,art,french,physics,pe,biology"
-376,"health,pe,photography,history,physics,cs,art"
-377,"french,spanish,history,art,math,pe,economics"
-378,"cs,math,italian,pe,french,health,art"
-379,"health,french,chemistry,cs,history,biology,photography"
-380,"physics,health,biology,pe,spanish,chemistry,french"
-381,"history,chemistry,photography,pe,biology,english,cs"
-382,"italian,french,english,history,spanish,physics,health"
-383,"history,chemistry,art,physics,math,economics,health"
-384,"french,cs,chemistry,physics,japanese,english,italian"
-385,"japanese,history,economics,physics,photography,biology,math"
-386,"math,art,japanese,history,biology,pe,english"
-387,"physics,health,italian,history,art,photography,cs"
-388,"english,history,math,health,art,photography,italian"
-389,"pe,english,history,spanish,cs,chemistry,italian"
-390,"physics,pe,chemistry,biology,history,italian,economics"
-391,"health,italian,chemistry,history,photography,economics,physics"
-392,"history,health,japanese,italian,physics,french,pe"
-393,"japanese,pe,history,italian,physics,math,economics"
-394,"health,chemistry,physics,history,biology,math,art"
-395,"french,art,biology,history,cs,pe,physics"
-396,"photography,art,biology,history,chemistry,pe,health"
-397,"biology,economics,math,chemistry,pe,photography,english"
-398,"cs,spanish,health,physics,pe,history,english"
-399,"physics,chemistry,italian,history,photography,japanese,biology"
-400,"math,pe,spanish,biology,history,economics,japanese"
-401,"history,french,health,biology,art,physics,japanese"
-402,"health,japanese,history,french,economics,english,physics"
-403,"french,italian,history,chemistry,art,spanish,biology"
-404,"photography,art,italian,history,english,health,physics"
-405,"math,pe,cs,english,french,health,art"
-406,"pe,physics,photography,spanish,japanese,economics,french"
-407,"french,physics,health,history,cs,pe,economics"
-408,"photography,spanish,history,french,math,pe,biology"
-409,"economics,history,math,art,pe,health,physics"
-410,"french,italian,history,pe,health,chemistry,math"
-411,"history,english,photography,cs,math,pe,biology"
-412,"biology,art,history,health,physics,cs,photography"
-413,"spanish,italian,photography,health,pe,biology,economics"
-414,"biology,pe,photography,health,history,cs,physics"
-415,"health,art,spanish,pe,japanese,photography,english"
-416,"french,art,health,history,photography,pe,biology"
-417,"spanish,biology,history,italian,art,french,cs"
-418,"spanish,history,english,italian,health,chemistry,art"
-419,"biology,french,history,cs,chemistry,math,photography"
-420,"history,physics,spanish,pe,photography,health,english"
-421,"pe,physics,economics,health,french,history,photography"
-422,"history,math,biology,japanese,physics,english,pe"
-423,"pe,chemistry,math,health,italian,photography,cs"
-424,"cs,pe,chemistry,health,math,spanish,history"
-425,"economics,pe,history,french,health,biology,japanese"
-426,"art,physics,french,cs,history,italian,math"
-427,"chemistry,spanish,japanese,history,pe,photography,economics"
-428,"history,biology,japanese,math,cs,english,art"
-429,"english,physics,photography,history,italian,cs,biology"
-430,"italian,biology,pe,japanese,cs,photography,math"
-431,"japanese,english,pe,health,chemistry,art,economics"
-432,"english,history,economics,math,french,health,pe"
-433,"spanish,history,photography,art,biology,english,health"
-434,"chemistry,art,history,english,health,math,biology"
-435,"spanish,health,math,physics,french,biology,economics"
-436,"biology,photography,art,history,pe,physics,italian"
-437,"spanish,physics,pe,photography,health,french,history"
-438,"pe,history,french,chemistry,health,math,economics"
-439,"photography,cs,math,french,spanish,health,chemistry"
-440,"history,physics,art,spanish,cs,photography,pe"
-441,"economics,history,chemistry,biology,japanese,french,italian"
-442,"history,chemistry,pe,spanish,italian,photography,japanese"
-443,"cs,physics,photography,health,pe,history,chemistry"
-444,"italian,pe,health,japanese,chemistry,history,french"
-445,"history,pe,italian,biology,health,japanese,spanish"
-446,"history,pe,physics,art,health,spanish,math"
-447,"japanese,pe,spanish,history,physics,health,biology"
-448,"art,photography,history,italian,spanish,cs,math"
-449,"history,english,health,cs,math,physics,biology"
-450,"cs,pe,art,economics,spanish,health,physics"
-451,"health,math,italian,chemistry,cs,biology,pe"
-452,"math,photography,french,physics,economics,history,biology"
-453,"history,photography,pe,chemistry,cs,spanish,japanese"
-454,"pe,art,japanese,health,history,chemistry,biology"
-455,"pe,spanish,history,physics,cs,japanese,health"
-456,"physics,art,health,french,spanish,japanese,biology"
-457,"spanish,history,health,economics,photography,italian,english"
-458,"french,italian,spanish,biology,japanese,physics,economics"
-459,"economics,chemistry,health,english,math,history,spanish"
-460,"biology,physics,history,health,photography,pe,spanish"
-461,"health,history,math,economics,chemistry,pe,spanish"
-462,"cs,photography,pe,english,math,health,economics"
-463,"chemistry,physics,japanese,english,biology,pe,health"
-464,"japanese,italian,french,pe,photography,physics,health"
-465,"spanish,pe,chemistry,math,health,history,english"
-466,"pe,italian,spanish,history,photography,cs,english"
-467,"physics,pe,health,history,japanese,art,photography"
-468,"japanese,history,math,chemistry,pe,physics,health"
-469,"french,math,health,spanish,italian,art,chemistry"
-470,"pe,physics,health,photography,cs,french,history"
-471,"history,pe,biology,french,spanish,chemistry,health"
-472,"english,pe,chemistry,physics,math,history,economics"
-473,"physics,chemistry,math,cs,photography,pe,french"
-474,"history,economics,pe,english,japanese,physics,cs"
-475,"health,math,biology,photography,french,history,economics"
-476,"biology,japanese,cs,health,history,french,italian"
-477,"pe,italian,english,cs,chemistry,french,math"
-478,"italian,photography,history,physics,pe,chemistry,spanish"
-479,"health,biology,english,spanish,photography,japanese,cs"
-480,"spanish,pe,japanese,history,physics,italian,cs"
-481,"history,chemistry,math,economics,pe,art,italian"
-482,"photography,history,pe,biology,french,cs,economics"
-483,"history,french,chemistry,japanese,art,physics,pe"
-484,"photography,physics,economics,english,pe,italian,spanish"
-485,"history,english,chemistry,french,art,photography,physics"
-486,"italian,history,spanish,pe,economics,photography,health"
-487,"economics,italian,physics,photography,math,history,cs"
-488,"economics,english,french,italian,japanese,physics,spanish"
-489,"history,italian,pe,chemistry,japanese,cs,health"
-490,"photography,cs,physics,english,art,spanish,french"
-491,"cs,history,japanese,english,pe,photography,economics"
-492,"pe,history,french,english,photography,health,cs"
-493,"japanese,history,chemistry,pe,art,economics,physics"
-494,"pe,spanish,physics,history,english,japanese,photography"
-495,"physics,cs,spanish,health,history,biology,japanese"
-496,"chemistry,japanese,italian,french,cs,history,math"
-497,"biology,history,economics,physics,cs,math,chemistry"
-498,"physics,cs,pe,chemistry,italian,economics,japanese"
-499,"health,japanese,physics,spanish,pe,italian,history"
+student,classes
+0,"Accounting,Economics,Computer Science,Geometry",finance
+1,"Photography,Drama,Art,Music,Biology,German,Computer Science",arts
+2,"Geometry,Algebra,Computer Science,Calculus,US History,Economics",math
+3,"German,World History,Accounting,Chinese",language
+4,"Computer Science,Physics,Chemistry,Biology",science
+5,"World History,Economics,Accounting,Music,Art,US History,Japanese",finance
+6,"Spanish,Japanese,German,Chinese,Economics,Photography",language
+7,"Calculus,Drama,Algebra,Geometry,French",math
+8,"Geometry,Japanese,Algebra,Calculus,Computer Science,Accounting,Spanish",math
+9,"Chemistry,Accounting,Economics,Biology,Computer Science,Chinese,Spanish",finance
+10,"Economics,Accounting,Geometry,European History",finance
+11,"Drama,Physics,Photography,Biology,US History,Economics",arts
+12,"Calculus,US History,European History,World History,Economics,Drama,Music",history
+13,"Drama,World History,Economics,Photography,Music",arts
+14,"Music,Art,Photography,Drama,Economics,Chemistry",arts
+15,"Computer Science,World History,Algebra,Spanish",math
+16,"Spanish,Japanese,Calculus,German,French,Chinese",language
+17,"World History,US History,European History,Physics,Geometry,Japanese,Drama",history
+18,"Chemistry,Computer Science,German,Biology,Economics,Physics,Accounting",science
+19,"Spanish,German,Physics,French,Japanese,Geometry",language
+20,"Computer Science,Calculus,Geometry,Accounting,Japanese",math
+21,"Drama,Photography,Music,Algebra,Art,Calculus",arts
+22,"Algebra,Computer Science,Physics,Chemistry",science
+23,"French,Algebra,Computer Science,European History,US History",math
+24,"French,Accounting,Economics,Physics,Spanish,Geometry",finance
+25,"Chinese,Economics,Accounting,Algebra,Japanese,Music",finance
+26,"Biology,Computer Science,Chemistry,Physics",science
+27,"Photography,Art,Algebra,Drama,US History,Music",arts
+28,"World History,US History,Japanese,European History",history
+29,"US History,French,European History,Economics,Music,World History",history
+30,"US History,European History,World History,French",history
+31,"Art,Economics,Algebra,Photography",arts
+32,"Music,Drama,Chemistry,Economics,Art,Photography",arts
+33,"Accounting,Economics,Drama,Japanese,Physics,Photography",finance
+34,"Chinese,German,Art,Spanish,Japanese,European History,French",language
+35,"Biology,Computer Science,Chemistry,Spanish,Calculus,Physics",science
+36,"Spanish,French,German,Chinese",language
+37,"Accounting,Music,Spanish,French,Economics",finance
+38,"Art,Geometry,Computer Science,Calculus,Accounting,Algebra",math
+39,"Biology,Physics,Chemistry,Computer Science,Algebra",science
+40,"World History,US History,Economics,European History,Drama",history
+41,"Economics,Chemistry,Japanese,Chinese,Biology,Computer Science,Algebra",science
+42,"Physics,Japanese,Biology,Chinese,Accounting,Chemistry,World History",science
+43,"World History,European History,US History,Computer Science,Biology,Geometry",history
+44,"Economics,Accounting,Chinese,Spanish",finance
+45,"German,Chinese,Spanish,Japanese,Art",language
+46,"Calculus,Drama,Accounting,Spanish,German,Economics,Computer Science",finance
+47,"Geometry,Accounting,Chemistry,Physics,Biology,Computer Science,European History",science
+48,"Accounting,Economics,Computer Science,French,German,Biology",finance
+49,"Economics,Computer Science,Accounting,Music,Japanese",finance
+50,"Economics,Spanish,French,World History,Chinese,Geometry,Japanese",language
+51,"Accounting,Economics,World History,Computer Science,Calculus,Geometry",finance
+52,"Biology,Drama,US History,Art",arts
+53,"Drama,European History,World History,Photography,Music,Biology,Physics",arts
+54,"Economics,Accounting,Computer Science,World History,German,Spanish,Chinese",finance
+55,"European History,World History,Geometry,US History,Drama",history
+56,"Economics,Geometry,Calculus,Algebra,Computer Science,Japanese,Chemistry",math
+57,"Geometry,Accounting,Spanish,Economics,Music,French",finance
+58,"US History,Japanese,Spanish,German,French,Chinese",language
+59,"Drama,German,Photography,Economics",arts
+60,"Photography,Art,Geometry,Music,Drama,Chemistry,German",arts
+61,"Physics,Computer Science,Biology,Chemistry,Chinese",science
+62,"Music,Economics,Accounting,Computer Science",finance
+63,"Algebra,Geometry,World History,Biology,Photography,Calculus",math
+64,"Chemistry,Computer Science,Physics,Art,Biology,Photography",science
+65,"US History,Economics,Music,World History,Chinese,Accounting,European History",history
+66,"Physics,European History,US History,World History,Photography,Geometry",history
+67,"Algebra,Economics,Accounting,Music",finance
+68,"Photography,Art,Music,US History,Algebra,Japanese",arts
+69,"Economics,Calculus,Computer Science,Geometry,Algebra",math
+70,"Economics,European History,World History,US History,Art,Accounting",history
+71,"US History,World History,Chemistry,European History,French,Biology",history
+72,"US History,Economics,German,Chinese,Japanese",language
+73,"Accounting,Economics,Chemistry,Photography,Japanese",finance
+74,"Accounting,Computer Science,Algebra,Geometry",math
+75,"Photography,Art,German,Drama",arts
+76,"Accounting,Economics,Spanish,Photography",finance
+77,"Drama,Accounting,Music,Economics",finance
+78,"Algebra,Calculus,French,Computer Science,Photography",math
+79,"Economics,Algebra,Geometry,Computer Science",math
+80,"French,World History,European History,US History",history
+81,"World History,Accounting,Economics,German,Biology",finance
+82,"World History,Economics,Photography,Chemistry,US History,European History,Art",history
+83,"Physics,Accounting,Chinese,Economics,Geometry,US History,European History",finance
+84,"Geometry,US History,Algebra,Calculus,Computer Science,World History",math
+85,"Chemistry,Physics,German,Computer Science,Economics,Accounting",science
+86,"Photography,Drama,Music,Geometry,Art,Japanese",arts
+87,"Drama,Accounting,Biology,US History,European History,World History,Computer Science",history
+88,"Spanish,Accounting,Economics,US History,French",finance
+89,"Chemistry,Biology,Accounting,Music,Physics,Geometry,Computer Science",science
+90,"US History,European History,French,Spanish,Economics",history
+91,"Chinese,Japanese,Spanish,French,German,World History,Music",language
+92,"World History,US History,Chemistry,European History,Music,Accounting",history
+93,"US History,World History,Japanese,German,Calculus",history
+94,"Physics,Economics,Algebra,Computer Science",math
+95,"Computer Science,World History,Music,Accounting,US History",history
+96,"Biology,Spanish,Japanese,French,Art",language
+97,"Algebra,Calculus,Computer Science,Economics,Accounting",math
+98,"Economics,Chemistry,Drama,Photography",arts
+99,"European History,Chinese,French,Photography,US History,Geometry",history
+100,"Drama,Economics,Accounting,German",finance
+101,"Economics,Drama,German,Accounting,US History,Spanish",finance
+102,"Chinese,German,Algebra,Japanese",language
+103,"Chemistry,Geometry,Physics,Accounting,Biology",science
+104,"Art,Accounting,Economics,Japanese,Chemistry",finance
+105,"Music,Art,Chemistry,Photography",arts
+106,"Spanish,Japanese,Chinese,German,French",language
+107,"Computer Science,Accounting,Economics,Geometry,Physics",finance
+108,"Chemistry,Computer Science,Physics,Biology,Geometry,Accounting",science
+109,"Computer Science,Photography,Music,Art,Drama,Biology,French",arts
+110,"European History,World History,Accounting,US History,Economics",history
+111,"Accounting,Economics,European History,Physics,Japanese,Chinese,US History",finance
+112,"Accounting,Economics,French,Chinese,European History,Physics,Art",finance
+113,"Biology,Computer Science,Algebra,Geometry",math
+114,"French,Spanish,European History,German,Chinese",language
+115,"Japanese,Spanish,Chinese,French,Drama",language
+116,"Accounting,European History,World History,Drama,Chinese,Computer Science",history
+117,"Japanese,French,German,Chinese",language
+118,"Economics,Geometry,Music,Drama,Art,Biology,Photography",arts
+119,"Geometry,Algebra,Calculus,French",math
+120,"World History,Physics,Computer Science,Geometry,Biology,Chemistry",science
+121,"Algebra,Computer Science,Geometry,Photography,Physics,World History",math
+122,"Accounting,Economics,Drama,Computer Science,Art",finance
+123,"US History,European History,Economics,Computer Science,World History",history
+124,"Art,Algebra,Music,French,Drama,Economics",arts
+125,"Art,Photography,Music,Geometry,Drama,Computer Science",arts
+126,"World History,Economics,Spanish,US History,Computer Science,Accounting,European History",history
+127,"Economics,Accounting,German,Geometry,US History",finance
+128,"Computer Science,Calculus,Geometry,Algebra,Drama,Economics,German",math
+129,"US History,World History,European History,Biology,Economics",history
+130,"Algebra,German,Japanese,French,US History,Chinese,Spanish",language
+131,"Geometry,Calculus,Art,Music,Economics",arts
+132,"Economics,Accounting,Music,Chemistry,Geometry",finance
+133,"Economics,Calculus,US History,Accounting,Biology,Japanese,Art",finance
+134,"Spanish,Chinese,Geometry,Algebra",language
+135,"European History,World History,US History,Accounting",history
+136,"Drama,Art,Music,Photography,World History",arts
+137,"Music,Calculus,Art,Accounting,Drama,US History",arts
+138,"Biology,Physics,US History,Calculus,Computer Science,Accounting,Chemistry",science
+139,"US History,German,European History,Biology",history
+140,"Art,Accounting,Economics,Chemistry,Chinese",finance
+141,"World History,Drama,European History,Economics,Computer Science",history
+142,"German,Chinese,Japanese,French",language
+143,"Computer Science,Chemistry,Biology,Physics",science
+144,"German,Spanish,European History,Drama,Japanese,Chinese,Computer Science",language
+145,"Computer Science,US History,French,Chemistry,Physics,European History",science
+146,"Accounting,Economics,Algebra,Computer Science,Japanese,US History",finance
+147,"Geometry,Physics,Spanish,Algebra,Japanese,French",language
+148,"Biology,Computer Science,US History,Algebra,Calculus,Geometry,Japanese",math
+149,"Music,Chemistry,Drama,Computer Science,Art,Photography",arts
+150,"Biology,Physics,Computer Science,Chemistry,Photography,French,Accounting",science
+151,"Spanish,European History,Geometry,US History,World History,Music,Accounting",history
+152,"Chinese,German,Accounting,Art,Spanish,Economics",language
+153,"Physics,Chemistry,Biology,Economics,Accounting,Art",science
+154,"Calculus,Drama,Economics,Physics,Music,Art",arts
+155,"US History,Algebra,German,Japanese,French,Spanish",language
+156,"Biology,Economics,Accounting,Calculus,Chemistry,French,Algebra",finance
+157,"Computer Science,Physics,Economics,Calculus,Biology,Drama",science
+158,"European History,World History,US History,German,Spanish",history
+159,"Chemistry,Biology,Physics,Computer Science",science
+160,"Geometry,Economics,Accounting,Chinese,Algebra,Calculus,World History",finance
+161,"Geometry,Calculus,German,Computer Science,Algebra,Drama,Photography",math
+162,"Japanese,Chinese,French,Computer Science",language
+163,"Chemistry,Computer Science,Physics,Biology",science
+164,"US History,Computer Science,Physics,World History,Chemistry",science
+165,"Economics,Accounting,Japanese,Art",finance
+166,"US History,Chemistry,European History,Economics,World History,Biology",history
+167,"European History,US History,World History,Physics",history
+168,"Economics,Algebra,US History,Calculus,Accounting",finance
+169,"World History,Computer Science,Physics,Biology",science
+170,"Economics,Calculus,Accounting,Chemistry,Drama,German",finance
+171,"Accounting,Physics,World History,Photography,Chemistry,Biology,Algebra",science
+172,"Chinese,German,French,Japanese,World History",language
+173,"Music,Art,Photography,Geometry,Drama",arts
+174,"US History,World History,Accounting,Geometry,European History,Art,Biology",history
+175,"World History,US History,European History,Biology,Physics,Music,Drama",history
+176,"Chemistry,Biology,Photography,Chinese,Physics,World History",science
+177,"Art,German,Spanish,French,Drama,World History,Chinese",language
+178,"Music,Calculus,Drama,Art,Photography,Biology,Spanish",arts
+179,"Music,Photography,Japanese,Art,Drama",arts
+180,"Chinese,US History,Japanese,Photography,Computer Science",language
+181,"French,Biology,Chemistry,World History,Physics",science
+182,"Drama,Art,European History,Spanish,Photography,French",arts
+183,"Economics,Accounting,Photography,US History,European History,Computer Science,Music",finance
+184,"Algebra,Physics,Computer Science,Geometry",science
+185,"Accounting,Economics,World History,Computer Science",finance
+186,"Drama,Economics,Accounting,Geometry,Japanese,Physics,Spanish",finance
+187,"German,World History,Physics,US History,European History,Art,Geometry",history
+188,"Geometry,European History,Computer Science,World History,Algebra,Calculus",math
+189,"World History,US History,Physics,European History,Computer Science",history
+190,"Art,Photography,Music,US History,Drama,Chinese,French",arts
+191,"European History,World History,US History,Computer Science,Algebra,Biology,Physics",history
+192,"Accounting,Physics,Economics,US History,Calculus,Biology,French",finance
+193,"Calculus,Algebra,Computer Science,Geometry,Japanese,Economics",math
+194,"Accounting,Computer Science,Biology,Physics,Economics,Chemistry,World History",science
+195,"European History,US History,Calculus,French,Economics,World History,Accounting",history
+196,"Algebra,Geometry,Drama,Calculus",math
+197,"Drama,Calculus,Music,Accounting,US History",arts
+198,"Geometry,Accounting,Algebra,US History,Computer Science,Calculus",math
+199,"Economics,US History,Calculus,Accounting,Chemistry,Physics",finance
+200,"Economics,Accounting,Music,Physics",finance
+201,"Accounting,World History,Music,Chemistry,Economics,Chinese",finance
+202,"Economics,Accounting,Computer Science,Chemistry,Drama,Calculus,Chinese",finance
+203,"Computer Science,Calculus,Geometry,Algebra,Biology,Music",math
+204,"Music,Drama,Art,Geometry,US History,Photography,Chemistry",arts
+205,"Chinese,Spanish,German,Japanese,World History,French,Drama",language
+206,"Economics,Japanese,Chinese,Photography",finance
+207,"European History,Calculus,World History,US History,Algebra,Spanish",history
+208,"US History,Economics,Accounting,Computer Science,Algebra,Physics,Japanese",finance
+209,"Drama,Spanish,Photography,Art,Chemistry,Music,European History",arts
+210,"Accounting,French,Economics,German",finance
+211,"Computer Science,US History,Chemistry,German,Drama",history
+212,"European History,Computer Science,Accounting,Geometry,Calculus,Spanish",math
+213,"Calculus,Physics,French,Chinese",math
+214,"Economics,Art,Accounting,Physics,German,French,Calculus",finance
+215,"Physics,Drama,German,Computer Science,Music,Biology",science
+216,"Art,Music,European History,US History",history
+217,"Japanese,Economics,German,Accounting",finance
+218,"Geometry,Algebra,US History,Chinese",math
+219,"Physics,Biology,Chemistry,Music,Computer Science,Accounting",science
+220,"Economics,Accounting,European History,Art,Photography,World History,Computer Science",finance
+221,"Geometry,Calculus,Algebra,European History,French,Chemistry,Economics",math
+222,"Japanese,Photography,Spanish,German,French,US History,Chinese",language
+223,"US History,Economics,Biology,Chinese,Accounting",finance
+224,"Algebra,German,Calculus,Geometry,Drama",math
+225,"Art,Music,Photography,Accounting,Physics",arts
+226,"Japanese,Computer Science,French,Spanish,Chinese,World History,German",language
+227,"Calculus,Algebra,Geometry,Computer Science,German",math
+228,"Calculus,World History,European History,Algebra,Geometry",history
+229,"US History,World History,Japanese,Drama",history
+230,"Photography,Drama,Accounting,Music,Art,Economics",arts
+231,"Computer Science,Algebra,Calculus,Geometry",math
+232,"World History,US History,European History,Physics,Photography,Algebra,Geometry",history
+233,"World History,Calculus,European History,US History,Geometry,Photography,Physics",history
+234,"Photography,Computer Science,Algebra,Chemistry,Calculus",math
+235,"Calculus,Chemistry,Accounting,Music,Algebra,Photography,Art",arts
+236,"Physics,Accounting,Geometry,Computer Science,Economics,Biology",finance
+237,"World History,Japanese,French,Accounting,Spanish",language
+238,"Accounting,Physics,Art,Chemistry,Biology,Computer Science",science
+239,"US History,Geometry,Economics,World History,Spanish,European History,Biology",history
+240,"Spanish,Japanese,Chemistry,German",language
+241,"Accounting,Economics,Music,Art,Computer Science",finance
+242,"European History,US History,Music,Photography,World History,Accounting",history
+243,"Photography,Drama,Economics,Music",arts
+244,"Photography,Drama,US History,Chinese,Biology,Calculus,Economics",arts
+245,"Chinese,German,Japanese,Chemistry,Biology,Computer Science,Calculus",language
+246,"Spanish,Geometry,World History,Japanese,Algebra,Calculus,Photography",math
+247,"Art,Chemistry,Spanish,Economics,Accounting,European History",finance
+248,"European History,US History,World History,Accounting,Computer Science,Japanese,Art",history
+249,"Physics,Computer Science,Photography,Art,Chemistry,Biology",science
+250,"Accounting,Economics,Drama,French,Music,World History,US History",finance
+251,"Accounting,Photography,Japanese,French,Computer Science",finance
+252,"Japanese,Chinese,Spanish,Drama,German",language
+253,"World History,US History,European History,Computer Science,Chinese,Geometry,Accounting",history
+254,"Accounting,Chemistry,Economics,Calculus",finance
+255,"Music,Drama,US History,World History,Photography,Spanish,Art",arts
+256,"US History,Geometry,Music,German",history
+257,"Photography,Music,Drama,Art,Calculus",arts
+258,"Computer Science,Drama,Calculus,Algebra",math
+259,"Geometry,Economics,Drama,Photography,Algebra,Calculus",math
+260,"US History,World History,Photography,Biology,European History,Art,Accounting",history
+261,"Accounting,US History,Economics,Chemistry",finance
+262,"Computer Science,Geometry,Algebra,Calculus,US History",math
+263,"Computer Science,Calculus,Physics,Chemistry,Biology",science
+264,"Accounting,Economics,Japanese,Music,World History,Chemistry",finance
+265,"Economics,Accounting,Computer Science,US History",finance
+266,"Accounting,Spanish,Chinese,Japanese,German,French",language
+267,"Accounting,Biology,Economics,World History,French,German,Chemistry",finance
+268,"Biology,Chemistry,Spanish,Computer Science",science
+269,"US History,Music,European History,World History,German,Geometry",history
+270,"Accounting,Physics,Economics,Computer Science,US History,French,Spanish",finance
+271,"Calculus,Computer Science,Biology,Algebra",math
+272,"French,Spanish,Economics,Drama",language
+273,"German,Art,Japanese,Photography",language
+274,"French,Economics,Spanish,Accounting,Japanese,Calculus,Computer Science",finance
+275,"World History,US History,European History,Photography,Chemistry,Accounting,German",history
+276,"Spanish,Chinese,German,French,Economics",language
+277,"Algebra,Economics,Geometry,Calculus,Computer Science,Photography",math
+278,"European History,Chemistry,Physics,Biology,Computer Science,Economics",science
+279,"French,German,Biology,Chinese,Spanish,Japanese,Music",language
+280,"World History,Accounting,Photography,Music,Art,Drama",arts
+281,"Biology,Physics,Computer Science,Chemistry,Calculus,Geometry,French",science
+282,"Geometry,Computer Science,Algebra,Japanese,Economics,Accounting,Calculus",math
+283,"Art,Chemistry,European History,Computer Science,Japanese,Chinese",science
+284,"Photography,Chemistry,Computer Science,Art",arts
+285,"Accounting,Chemistry,German,Spanish,Algebra,European History",finance
+286,"Music,Art,Photography,Drama,Biology,World History",arts
+287,"Art,Geometry,Japanese,Chinese,French,Spanish",language
+288,"Calculus,Computer Science,Algebra,Geometry,Spanish,Chemistry",math
+289,"Computer Science,Algebra,Geometry,Music,German,Economics",math
+290,"Biology,Computer Science,Algebra,Spanish",math
+291,"Geometry,Chemistry,Calculus,Accounting,Algebra,Computer Science",math
+292,"Economics,Computer Science,Accounting,Spanish,World History,Chemistry",finance
+293,"Art,Music,Photography,Accounting,Economics,Physics",arts
+294,"US History,World History,Art,Algebra,Chinese",history
+295,"Algebra,Music,Photography,US History",arts
+296,"French,Calculus,Japanese,Algebra",math
+297,"Accounting,Calculus,Economics,US History,Drama,European History",finance
+298,"US History,European History,World History,Computer Science",history
+299,"Drama,Art,Photography,Music,US History,Geometry,Calculus",arts
+300,"German,Japanese,Economics,Chinese,Geometry,French,Biology",language
+301,"US History,Calculus,Spanish,Chemistry",math
+302,"Algebra,Calculus,Geometry,Accounting",math
+303,"Japanese,Photography,Drama,Art,Chinese,Music",arts
+304,"Chinese,Accounting,Economics,Computer Science,European History",finance
+305,"Art,Geometry,Algebra,Computer Science,Economics,Chemistry,Calculus",math
+306,"German,French,Chinese,Physics",language
+307,"German,Spanish,Japanese,Chinese,French,Chemistry,US History",language
+308,"Chinese,Drama,Spanish,Japanese,Photography,French,Economics",language
+309,"Chemistry,Biology,Accounting,Computer Science,US History,Physics,Drama",science
+310,"US History,European History,Computer Science,Biology,World History,Art",history
+311,"Physics,Computer Science,Biology,Chemistry,Geometry,US History,Accounting",science
+312,"German,French,Spanish,Economics,Japanese,Calculus,Chinese",language
+313,"Music,Drama,Art,Accounting,Economics",arts
+314,"Economics,Accounting,Japanese,Chemistry",finance
+315,"French,European History,Chinese,Japanese",language
+316,"Photography,Drama,Music,European History,Accounting,Art",arts
+317,"Computer Science,Algebra,Calculus,Physics",math
+318,"Drama,World History,Photography,Music,Art",arts
+319,"Geometry,World History,US History,European History",history
+320,"Accounting,Computer Science,Economics,Chemistry,Geometry,Art",finance
+321,"Computer Science,World History,European History,US History,Geometry",history
+322,"Japanese,Calculus,Computer Science,Accounting",math
+323,"Accounting,Art,Drama,Music",arts
+324,"Biology,Economics,Accounting,Spanish,Geometry,Drama,German",finance
+325,"French,US History,Chinese,German,Spanish",language
+326,"Photography,Drama,Music,Calculus,Computer Science,Art",arts
+327,"European History,US History,World History,Photography,Drama",history
+328,"Accounting,Spanish,Japanese,Computer Science,Economics",finance
+329,"European History,US History,Japanese,World History,Photography,Accounting,Physics",history
+330,"World History,European History,Spanish,US History",history
+331,"World History,Music,Drama,European History,US History,Geometry,Biology",history
+332,"Economics,World History,Accounting,Chemistry,Music,Computer Science",finance
+333,"European History,World History,US History,Computer Science,Photography",history
+334,"Economics,Accounting,Spanish,Computer Science",finance
+335,"Geometry,Drama,World History,Biology,Computer Science,Calculus,Spanish",math
+336,"Biology,Computer Science,Physics,Chemistry",science
+337,"US History,Biology,European History,Chemistry,World History,Algebra,Accounting",history
+338,"Art,Photography,Accounting,Music",arts
+339,"European History,US History,World History,Chemistry,French",history
+340,"Art,Drama,Economics,Computer Science",arts
+341,"Art,Geometry,Computer Science,Photography,Algebra,Drama",arts
+342,"Spanish,Chinese,French,German,Japanese,Physics",language
+343,"German,Biology,Chemistry,Japanese",science
+344,"Algebra,Chinese,Computer Science,Biology,Accounting,Geometry,Chemistry",math
+345,"Photography,Japanese,Art,Physics,US History",arts
+346,"European History,Accounting,French,Art,Economics,Music",finance
+347,"European History,Accounting,Music,Economics",finance
+348,"Computer Science,Biology,Chemistry,Physics,Chinese",science
+349,"French,Japanese,Chinese,Art,World History",language
+350,"Accounting,Economics,Chinese,Geometry,US History,Algebra",finance
+351,"Art,Japanese,Computer Science,Drama,Physics,Algebra",arts
+352,"Physics,Chemistry,Computer Science,Biology,Economics,Geometry",science
+353,"Accounting,Economics,Music,Computer Science,World History,Chinese,Chemistry",finance
+354,"Geometry,Calculus,Chemistry,Computer Science,Algebra,Accounting,Photography",math
+355,"World History,Biology,Physics,Spanish,European History",history
+356,"US History,World History,European History,Drama,Music,Japanese",history
+357,"Chemistry,Drama,French,Physics,Computer Science,Calculus",science
+358,"World History,US History,Chemistry,European History,Accounting",history
+359,"Chinese,Japanese,Geometry,Calculus",language
+360,"European History,Drama,Calculus,German,Computer Science",math
+361,"Geometry,Physics,Economics,Computer Science",science
+362,"Computer Science,Physics,Algebra,Chemistry,Biology,World History",science
+363,"Computer Science,Art,Drama,Photography",arts
+364,"US History,Algebra,Spanish,World History,Accounting",history
+365,"Economics,Geometry,Algebra,Calculus,Chinese,European History",math
+366,"Drama,Music,Photography,Art,Accounting,Computer Science",arts
+367,"Physics,European History,Music,Computer Science",science
+368,"Music,Drama,French,Computer Science,Art,Algebra,Economics",arts
+369,"Physics,Algebra,Economics,Computer Science,Chemistry,World History",science
+370,"Physics,Chemistry,Biology,Computer Science,Art",science
+371,"Accounting,Economics,French,World History,Spanish,Chinese",finance
+372,"French,Economics,Accounting,Physics,Photography",finance
+373,"Spanish,German,Japanese,Accounting,French",language
+374,"Japanese,Photography,Chinese,Spanish,German",language
+375,"Japanese,Computer Science,French,Accounting,German,Economics",language
+376,"Algebra,Computer Science,Drama,Calculus,Geometry,US History",math
+377,"Economics,Accounting,Algebra,Biology,Geometry",finance
+378,"European History,World History,US History,German,Economics,French,Drama",history
+379,"Biology,Chemistry,Computer Science,Physics,Calculus",science
+380,"World History,Algebra,Computer Science,Geometry",math
+381,"Accounting,Economics,Calculus,Physics",finance
+382,"Biology,Photography,Chemistry,Art,Chinese,World History,Physics",arts
+383,"US History,Chinese,French,Spanish,Calculus",language
+384,"US History,World History,European History,Drama",history
+385,"Drama,US History,Art,European History,Photography,Algebra,Biology",arts
+386,"Music,Drama,Economics,World History,Photography,US History,Art",arts
+387,"Geometry,Computer Science,Economics,European History,World History,Algebra",math
+388,"Art,Chemistry,Drama,Photography",arts
+389,"US History,Chinese,German,French,Japanese",language
+390,"Art,Music,Computer Science,Biology,Drama",arts
+391,"Algebra,Chemistry,Accounting,Japanese",finance
+392,"European History,US History,Japanese,World History,Algebra,Chinese",history
+393,"Music,Physics,Drama,Art,Photography",arts
+394,"Biology,Computer Science,German,Economics,Japanese",science
+395,"Japanese,Physics,Economics,German,Spanish,Chinese,Algebra",language
+396,"World History,German,Chinese,Economics,US History,European History,Spanish",history
+397,"Economics,Accounting,European History,Spanish,Computer Science,Geometry",finance
+398,"Biology,Computer Science,Physics,Photography,Chemistry,Calculus,Drama",science
+399,"Art,Spanish,Drama,Physics",arts
+400,"Accounting,Art,World History,Economics,Music,Computer Science,Algebra",finance
+401,"Physics,World History,German,Chinese",language
+402,"Spanish,Photography,Physics,Computer Science,Biology,Chemistry,Chinese",science
+403,"US History,Accounting,European History,Economics,World History,German",history
+404,"Japanese,Drama,Economics,Chinese",language
+405,"Chinese,German,Algebra,French,Music,Economics,Japanese",language
+406,"Physics,Computer Science,Chemistry,US History",science
+407,"Biology,Accounting,Physics,Geometry",finance
+408,"Photography,Drama,Music,Art",arts
+409,"World History,European History,French,US History,Photography",history
+410,"German,Chinese,European History,Drama,French,Spanish",language
+411,"Accounting,Calculus,Economics,US History,Japanese",finance
+412,"Computer Science,Algebra,French,Geometry,Calculus,World History",math
+413,"Biology,Chemistry,Computer Science,European History,Physics,Calculus",science
+414,"German,Japanese,Calculus,French,Chinese,Economics,Algebra",language
+415,"Economics,Accounting,Computer Science,Photography,Music",finance
+416,"Spanish,Japanese,French,Accounting",language
+417,"Geometry,Calculus,Accounting,Algebra,French",math
+418,"Biology,US History,Computer Science,Chemistry,European History,Drama,Physics",science
+419,"Japanese,German,Physics,Spanish,French,Photography,Accounting",language
+420,"Geometry,Calculus,World History,Computer Science,Accounting",math
+421,"Japanese,Spanish,World History,Accounting,Art,Calculus",language
+422,"European History,US History,Biology,Art,Japanese,World History",history
+423,"World History,US History,Computer Science,European History,Geometry,Photography",history
+424,"Photography,Drama,Computer Science,Music",arts
+425,"European History,US History,World History,Accounting,Chemistry",history
+426,"Economics,French,Chinese,German",language
+427,"Economics,Accounting,European History,German,Chinese,Music",finance
+428,"World History,US History,European History,Algebra",history
+429,"Accounting,Chemistry,German,Economics,Calculus,Photography,Computer Science",finance
+430,"Economics,Accounting,Drama,European History",finance
+431,"Algebra,Calculus,Economics,Geometry,Accounting,Computer Science,German",math
+432,"Algebra,Geometry,Calculus,Computer Science,French",math
+433,"Chemistry,Computer Science,Biology,World History,Economics,Music",science
+434,"Biology,Chinese,Calculus,Computer Science,World History",science
+435,"Drama,Music,Economics,Art,Photography,European History,Geometry",arts
+436,"Physics,Computer Science,French,Accounting,US History",science
+437,"Music,US History,Drama,Accounting,European History,Photography",arts
+438,"Japanese,US History,Accounting,Economics,Chinese",finance
+439,"Economics,Accounting,Calculus,Chinese,Japanese",finance
+440,"Economics,Geometry,Accounting,French",finance
+441,"Accounting,US History,World History,Geometry,French,Algebra,European History",history
+442,"Music,Drama,Art,Photography,Physics",arts
+443,"German,Chinese,French,World History,Biology,Spanish",language
+444,"Computer Science,Economics,French,Chemistry,Biology,Physics",science
+445,"Accounting,Economics,European History,German",finance
+446,"Chemistry,Physics,World History,Music,Computer Science",science
+447,"Calculus,Chinese,Japanese,Spanish,Accounting,European History,French",language
+448,"Photography,Computer Science,Art,Music,Geometry",arts
+449,"Calculus,Computer Science,Geometry,Algebra,Art,Physics,World History",math
+450,"US History,Accounting,Photography,Biology,Economics,Drama",finance
+451,"World History,European History,Chemistry,US History,Algebra",history
+452,"Accounting,Photography,Calculus,Computer Science,Algebra",math
+453,"Economics,Drama,Computer Science,Accounting,Spanish,European History,Geometry",finance
+454,"Art,Photography,Music,Drama,Geometry,US History",arts
+455,"Japanese,Spanish,French,Biology",language
+456,"Accounting,Economics,Spanish,Japanese,Biology,Drama",finance
+457,"Music,Algebra,Drama,Art,Physics,US History,Photography",arts
+458,"Chemistry,European History,World History,Biology",history
+459,"Computer Science,Economics,Geometry,Algebra",math
+460,"US History,European History,Physics,World History,French",history
+461,"Art,Economics,Drama,World History",arts
+462,"Chinese,Algebra,Geometry,Calculus,Computer Science,Economics",math
+463,"Accounting,Economics,Geometry,Spanish",finance
+464,"Japanese,French,Chinese,Spanish",language
+465,"Computer Science,Biology,Physics,US History,Algebra,French",science
+466,"Computer Science,Drama,Chemistry,Biology",science
+467,"Geometry,Spanish,Algebra,Computer Science,Economics,Calculus,Drama",math
+468,"Chinese,Algebra,German,French,Spanish,Japanese",language
+469,"World History,US History,European History,Physics",history
+470,"Spanish,Chinese,Calculus,German",language
+471,"US History,Photography,Music,World History,Art",arts
+472,"Music,Calculus,European History,Japanese,German,Chinese",language
+473,"Music,Drama,Art,Photography,Computer Science",arts
+474,"Accounting,Biology,Economics,Computer Science,Music",finance
+475,"Economics,Accounting,US History,Calculus,Japanese,Chinese,Photography",finance
+476,"Geometry,Calculus,Physics,Computer Science,World History,Accounting",math
+477,"Accounting,Economics,German,Algebra,Physics,Chemistry",finance
+478,"Physics,Chemistry,Biology,Chinese,Art",science
+479,"Drama,Photography,Physics,Art,Economics",arts
+480,"World History,European History,US History,Music,Drama",history
+481,"Photography,Art,Music,European History,Economics,US History",arts
+482,"European History,Accounting,German,World History,Geometry,US History",history
+483,"US History,World History,European History,Economics,German",history
+484,"Chinese,French,German,Music",language
+485,"European History,Computer Science,US History,Algebra",history
+486,"US History,Geometry,Computer Science,Accounting,Drama,Calculus",math
+487,"US History,Computer Science,World History,Calculus,Photography,Accounting",history
+488,"Accounting,Economics,Spanish,Drama",finance
+489,"Economics,Accounting,US History,Chinese",finance
+490,"Physics,Photography,Art,Drama,World History",arts
+491,"Art,Spanish,Music,Chinese,Calculus",arts
+492,"Algebra,Geometry,German,Computer Science",math
+493,"Chemistry,Photography,Geometry,Biology",science
+494,"Calculus,European History,Computer Science,German",math
+495,"Photography,Chinese,Drama,Music,Art,Japanese",arts
+496,"Art,Economics,Computer Science,Physics",science
+497,"US History,Algebra,World History,French,European History,Chemistry,Economics",history
+498,"Drama,Chinese,Computer Science,Chemistry,US History",arts
+499,"French,Chinese,German,Japanese",language

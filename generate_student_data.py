@@ -1,21 +1,48 @@
+import os
 import csv
 import random
 
-# multiple of the same class so more students have that class
-classes = ["physics", "physics", "math", "cs", "history", "history", "history", "biology", "chemistry",
-           "english", "pe", "pe", "photography", "health", "health", "economics", "art", "japanese", "french",
-           "spanish", "italian"]
+NUM_STUDENTS = 500
+TARGET_CLASSES_PER_STUDENT = 6
+CORE_CHANCE = 0.7
 
-num_students = 500
-num_classrooms = 3
-num_classes_per_student = 7
-with open('students.csv', 'w') as f:
-    for i in range(num_students):
-        student_classes = []
-        while len(student_classes) < num_classes_per_student:
-            rand_index = random.randint(0, len(classes) - 1)
-            print(rand_index)
-            if classes[rand_index] not in student_classes:
-                student_classes.append(classes[rand_index])
+STUDENT_DATA_FILE = 'students.csv'
+
+classes = { # classes[subject] = [class1, class2, ...]
+    "science": ["Physics", "Chemistry", "Biology", "Computer Science"],
+    "math": ["Algebra", "Geometry", "Calculus", "Computer Science"],
+    "history": ["World History", "US History", "European History"],
+    "language": ["Spanish", "French", "German", "Japanese", "Chinese"],
+    "arts": ["Art", "Music", "Drama", "Photography"],
+    "finance": ["Economics", "Accounting"],
+}
+
+def generate_student_data():
+    if os.path.exists(STUDENT_DATA_FILE):
+        os.remove(STUDENT_DATA_FILE)
+
+    with open(STUDENT_DATA_FILE, 'w') as f:
         writer = csv.writer(f)
-        writer.writerow([i, ','.join(student_classes)])
+        writer.writerow(['student', 'classes'])
+        
+        for _ in range(NUM_STUDENTS):
+            core_subject = random.choice(list(classes.keys()))
+            num_classes = random.randint(TARGET_CLASSES_PER_STUDENT - 2, TARGET_CLASSES_PER_STUDENT + 1)
+            
+            student_classes = []
+            while len(student_classes) < num_classes:
+                if random.random() < CORE_CHANCE:
+                    subject = core_subject
+                else:
+                    subject = random.choice(list(classes.keys()))
+                
+                class_name = random.choice(classes[subject])
+                if class_name not in student_classes:
+                    student_classes.append(class_name)
+
+            writer.writerow([_, ','.join(student_classes)])
+
+    
+
+if __name__ == '__main__':
+    generate_student_data()
