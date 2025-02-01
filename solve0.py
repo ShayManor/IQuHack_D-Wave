@@ -1,5 +1,8 @@
+print("STARTING...")
+
 import dimod
 from dwave.system import LeapHybridCQMSampler
+# import pprint
 
 def create_exam_scheduling_cqm(
     num_students,
@@ -57,11 +60,11 @@ NUM_CLASSES = 5         # B
 CLASSES_PER_STUDENT = 2 # C
 NUM_ROOMS = 2           # D
 ROOM_CAPACITY = 5       # E
-TIME_SLOTS = 6          # T
+TIME_SLOTS = 10         # T
 
 # Randomly assigning students to classes
 import random
-student_classes = {s: random.sample(range(NUM_STUDENTS), NUM_CLASSES) for s in range(NUM_STUDENTS)}
+student_classes = {s: random.sample(range(NUM_CLASSES), CLASSES_PER_STUDENT) for s in range(NUM_STUDENTS)}
 
 # Create CQM model
 cqm = create_exam_scheduling_cqm(
@@ -73,13 +76,29 @@ cqm = create_exam_scheduling_cqm(
     TIME_SLOTS,
     student_classes,
 )
+print("CQM CREATED...")
 
 # Solve with D-Wave's hybrid CQM solver
 sampler = LeapHybridCQMSampler()
-solution = sampler.sample_cqm(cqm, time_limit=10)
+solutions = sampler.sample_cqm(cqm, time_limit=5)
+print("SOLVED...")
+
+# Filter to feasible solutions
+feasaible = solutions.filter(lambda row: row.is_feasible)
+print("FEASIBLE SOLUTIONS...")
 
 # Extract results
-best_sample = solution.first.sample
-schedule = [k for k, val in best_sample.items() if val == 1]
-print("Optimized Exam Schedule:")
-print(schedule)
+if len(feasaible) == 0:
+    print("No feasible solutions found.")
+else:
+    # for datum in feasaible.data(fields=['sample', 'energy']):   
+    #     pprint.pprint(datum)
+
+    best_sample = feasaible.first.sample
+    schedule = [k for k, val in best_sample.items() if val == 1]
+    print("Optimized Exam Schedule:")
+    print(schedule)
+
+
+
+print("DONE.")
