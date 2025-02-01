@@ -16,8 +16,6 @@ PENALTY_CAPACITY = 2
 
 STUDENT_DATA_FILE = 'students.csv'
 ROOM_DATA_FILE = 'classrooms.csv'
-
-
 #------------------------------------------------------------------------------#
 
 
@@ -143,8 +141,6 @@ def read_room_data(filename):
             all_rooms.append(Room(room_id, room_capacity))
 
     return all_rooms
-
-
 #------------------------------------------------------------------------------#
 
 
