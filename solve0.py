@@ -47,6 +47,14 @@ def create_exam_scheduling_cqm(
                 sum(x[b, t, d] * len([s for s in range(num_students) if b in student_classes[s]]) for b in range(num_classes)) <= room_capacity[d],
                 label=f'room_{d}_capacity_t{t}'
             )
+
+    # Contraint 3: Each room is used once at one time
+    for t in range(time_slots):
+        for d in range(num_rooms):
+            cqm.add_constraint(
+                sum(x[b, t, d] for b in range(num_classes)) <= 1,
+                label=f'room_{d}_time_{t}_once'
+            )
     
     # Objective: Minimize exams closer to noon
     noon_slot = time_slots // 2
