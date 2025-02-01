@@ -1,4 +1,8 @@
-classroom_id,num_seats
+id,capacity
 0,200
 1,400
 2,300
+3,500
+4,500
+5,500
+6,500
