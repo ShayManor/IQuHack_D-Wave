@@ -150,6 +150,10 @@ def read_room_data(filename):
 
 #------------------------------------------------------------------------------#
 def get_data(weights):
+    print("STARTING SCHDULING...")
+
+    #------------------------------------------------------------------------------#
+    print("LOADING DATA...")
     days = weights['days']
     students, classes = read_student_data(STUDENT_DATA_FILE)
     rooms = read_room_data(ROOM_DATA_FILE)
@@ -166,6 +170,7 @@ def get_data(weights):
     #------------------------------------------------------------------------------#
 
     #------------------------------------------------------------------------------#
+    print("CREATING CQM...")
     cqm = create_exam_scheduling_cqm(
         num_students,
         num_classes,
@@ -180,11 +185,13 @@ def get_data(weights):
     #------------------------------------------------------------------------------#
 
     #------------------------------------------------------------------------------#
+    print("SUBMITTING TO SOLVER...")
     # Solve with D-Wave's hybrid CQM solver
     sampler = LeapHybridCQMSampler()
     solutions = sampler.sample_cqm(cqm, time_limit=5)
     print("SOLVED...")
 
+    print("FILTERING SOLUTIONS...")
     # Filter to feasible solutions
     feasaible = solutions.filter(lambda row: row.is_feasible)
     print("FEASIBLE SOLUTIONS...")
@@ -214,5 +221,3 @@ def get_data(weights):
         check_solution.check_solution(data)
         return data
     #------------------------------------------------------------------------------#
-
-    print("DONE.")
