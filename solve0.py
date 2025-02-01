@@ -158,14 +158,13 @@ def read_room_data(filename):
 
 #------------------------------------------------------------------------------#
 def get_data(weights):
-    DAYS = weights['days']
+    days = weights['days']
     students, classes = read_student_data(STUDENT_DATA_FILE)
     rooms = read_room_data(ROOM_DATA_FILE)
     num_students = len(students)
     num_classes = len(classes)
     num_rooms = len(rooms)
 
-    print(f"Size: {num_classes * num_rooms * TIME_SLOTS_PER_DAY * DAYS}")
 
     room_capacities = {r.id: r.capacity for r in rooms}
     student_classes = {s.id: s.classes for s in students}
@@ -179,7 +178,7 @@ def get_data(weights):
         num_classes,
         num_rooms,
         TIME_SLOTS_PER_DAY,
-        DAYS,
+        days,
         room_capacities,
         student_classes,
         weights["weights"]
