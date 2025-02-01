@@ -61,7 +61,7 @@ TIME_SLOTS = 6          # T
 
 # Randomly assigning students to classes
 import random
-student_classes = {s: random.sample(range(B), C) for s in range(A)}
+student_classes = {s: random.sample(range(NUM_STUDENTS), NUM_CLASSES) for s in range(NUM_STUDENTS)}
 
 # Create CQM model
 cqm = create_exam_scheduling_cqm(
@@ -80,6 +80,6 @@ solution = sampler.sample_cqm(cqm, time_limit=10)
 
 # Extract results
 best_sample = solution.first.sample
-schedule = [(b, t, d) for (b, t, d), val in best_sample.items() if val == 1]
+schedule = [k for k, val in best_sample.items() if val == 1]
 print("Optimized Exam Schedule:")
 print(schedule)
