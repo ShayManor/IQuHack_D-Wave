@@ -2,8 +2,10 @@ print("STARTING...")
 
 import dimod
 from dwave.system import LeapHybridCQMSampler
-# import pprint
+import numpy as np
+
 import csv
+
 import check_solution
 
 
@@ -34,6 +36,9 @@ def create_exam_scheduling_cqm(
 
     cqm = dimod.ConstrainedQuadraticModel()
 
+    # Precompute the number of students in each class
+    class_student_counts = np.array([len([s for s in range(num_students) if b in student_classes[s]]) for b in range(num_classes)])
+
     # Decision Variables: x[b, t, d] -> 1 if class b is scheduled at time t in room d
     x = {(b, t, d): dimod.Binary(f'x_{b}_{t}_{d}')
          for b in range(num_classes)
@@ -52,12 +57,11 @@ def create_exam_scheduling_cqm(
     for t in range(time_slots):
         for d in range(num_rooms):
             cqm.add_constraint(
-                sum(x[b, t, d] * len([s for s in range(num_students) if b in student_classes[s]]) for b in
-                    range(num_classes)) <= room_capacity[d],
+                sum(x[b, t, d] * class_student_counts[b] for b in range(num_classes)) <= room_capacity[d],
                 label=f'room_{d}_capacity_t{t}'
             )
 
-    # Contraint 3: Each room is used once at one time
+    # Constraint 3: Each room is used once at one time
     for t in range(time_slots):
         for d in range(num_rooms):
             cqm.add_constraint(
@@ -67,8 +71,7 @@ def create_exam_scheduling_cqm(
 
     # Objective 1: Minimize exams closer to noon
     objective = sum(
-        x[b, t, d] * weights[t % time_slots_per_day]
-        * len([s for s in range(num_students) if b in student_classes[s]])
+        x[b, t, d] * weights[t % time_slots_per_day] * class_student_counts[b]
         for b in range(num_classes)
         for t in range(time_slots)
         for d in range(num_rooms)
@@ -84,7 +87,7 @@ def create_exam_scheduling_cqm(
 
     # Penalty 2: Excess room capacity
     penalty_capacity = sum(
-        x[b, t, d] * abs(len([s for s in range(num_students) if b in student_classes[s]]) - room_capacity[d]) ** 1.2
+        x[b, t, d] * abs(class_student_counts[b] - room_capacity[d]) ** 1.2
         for b in range(num_classes)
         for t in range(time_slots)
         for d in range(num_rooms)
