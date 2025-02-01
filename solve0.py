@@ -61,11 +61,13 @@ def create_exam_scheduling_cqm(
             )
 
     # Objective: Minimize exams closer to noon
-    # noon_slot = time_slots // 2
-    # objective = sum(
-    #     x[b, t, d] * abs(t - noon_slot)
-    #     for b in range(num_classes) for t in range(time_slots) for d in range(num_rooms)
-    # )
+    noon_slot = time_slots // 2
+    objective = sum(
+        x[b, t, d] * abs(t - noon_slot) * len([s for s in range(num_students) if b in student_classes[s]])
+        for b in range(num_classes)
+        for t in range(time_slots)
+        for d in range(num_rooms)
+    )
 
     # Penalty: Overlapping student exams
     # TODO: penalty must scale with number??
@@ -77,8 +79,7 @@ def create_exam_scheduling_cqm(
     )
 
     # TODO: optimize to not waste excess room space
-    cqm.set_objective(PENALTY_WEIGHT * penalty)
-    # cqm.set_objective(objective + penalty_weight * penalty)
+    cqm.set_objective(objective + PENALTY_WEIGHT * penalty)
 
     return cqm
 
