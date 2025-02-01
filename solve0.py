@@ -4,6 +4,8 @@ import dimod
 from dwave.system import LeapHybridCQMSampler
 # import pprint
 
+PENALTY_WEIGHT = 50.0
+
 def create_exam_scheduling_cqm(
     num_students,
     num_classes, 
@@ -28,15 +30,7 @@ def create_exam_scheduling_cqm(
             sum(x[b, t, d] for t in range(time_slots) for d in range(num_rooms)) == 1,
             label=f'class_{b}_assigned_once'
         )
-    
-    # Constraint 2: No student should have overlapping exams
-    for s in range(num_students):
-        for t in range(time_slots):
-            cqm.add_constraint(
-                sum(x[b, t, d] for b in student_classes[s] for d in range(num_rooms)) <= 1, 
-                label=f'student_{s}_no_overlap_t{t}'
-            )
-    
+        
     # Constraint 3: Room capacity must not be exceeded
     for t in range(time_slots):
         for d in range(num_rooms):
@@ -48,9 +42,18 @@ def create_exam_scheduling_cqm(
     # Objective: Minimize exams closer to noon
     noon_slot = time_slots // 2
     objective = sum(
-        x[b, t, d] * abs(t - noon_slot) for b in range(num_classes) for t in range(time_slots) for d in range(num_rooms)
+        x[b, t, d] * abs(t - noon_slot)
+        for b in range(num_classes) for t in range(time_slots) for d in range(num_rooms)
     )
-    cqm.set_objective(objective)
+
+    # Penalty: Overlapping student exams
+    penalty_weight = 10  # Adjust as needed
+    penalty = sum(
+        sum(x[b, t, d] for b in student_classes[s] for d in range(num_rooms)) - 1
+        for s in range(num_students) for t in range(time_slots)
+    )
+    
+    cqm.set_objective(objective + penalty_weight * penalty)
     
     return cqm
 
@@ -59,7 +62,7 @@ NUM_STUDENTS = 10       # A
 NUM_CLASSES = 5         # B
 CLASSES_PER_STUDENT = 2 # C
 NUM_ROOMS = 2           # D
-ROOM_CAPACITY = 5       # E
+ROOM_CAPACITY = 10      # E
 TIME_SLOTS = 10         # T
 
 # Randomly assigning students to classes
