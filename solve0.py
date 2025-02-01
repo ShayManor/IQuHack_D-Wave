@@ -18,7 +18,8 @@ STUDENT_DATA_FILE = 'students.csv'
 ROOM_DATA_FILE = 'classrooms.csv'
 
 TIME_SLOTS_PER_DAY = 6
-DAYS = 5
+
+
 #------------------------------------------------------------------------------#
 
 
@@ -30,7 +31,8 @@ def create_exam_scheduling_cqm(
         time_slots_per_day,
         days,
         room_capacity,
-        student_classes
+        student_classes,
+        weights
 ):
     time_slots = time_slots_per_day * days
 
@@ -38,10 +40,10 @@ def create_exam_scheduling_cqm(
 
     # Decision Variables: x[b, t, d] -> 1 if class b is scheduled at time t in room d
     x = {(b, t, d): dimod.Binary(f'x_{b}_{t}_{d}')
-            for b in range(num_classes)
-            for t in range(time_slots)
-            for d in range(num_rooms)
-        }
+         for b in range(num_classes)
+         for t in range(time_slots)
+         for d in range(num_rooms)
+         }
 
     # Constraint 1: Each class must be assigned exactly once
     for b in range(num_classes):
@@ -68,10 +70,9 @@ def create_exam_scheduling_cqm(
             )
 
     # Objective 1: Minimize exams closer to noon
-    noon_slot = time_slots_per_day // 2
     objective = sum(
-        x[b, t, d] * abs(t % time_slots_per_day - noon_slot)
-            * len([s for s in range(num_students) if b in student_classes[s]])
+        x[b, t, d] * weights[t % time_slots_per_day]
+        * len([s for s in range(num_students) if b in student_classes[s]])
         for b in range(num_classes)
         for t in range(time_slots)
         for d in range(num_rooms)
@@ -96,11 +97,13 @@ def create_exam_scheduling_cqm(
     # TODO: optimize to not waste excess room space
     cqm.set_objective(
         OBJECTIVE_WEIGHT * objective +
-        PENALTY_OVERLAPPING * penalty_overlapping + 
+        PENALTY_OVERLAPPING * penalty_overlapping +
         PENALTY_CAPACITY * penalty_capacity
     )
 
     return cqm
+
+
 #------------------------------------------------------------------------------#
 
 
@@ -148,11 +151,14 @@ def read_room_data(filename):
             all_rooms.append(Room(room_id, room_capacity))
 
     return all_rooms
+
+
 #------------------------------------------------------------------------------#
 
 
 #------------------------------------------------------------------------------#
 def get_data(weights):
+    DAYS = weights['days']
     students, classes = read_student_data(STUDENT_DATA_FILE)
     rooms = read_room_data(ROOM_DATA_FILE)
     num_students = len(students)
@@ -167,7 +173,6 @@ def get_data(weights):
     print("DATA LOADED...")
     #------------------------------------------------------------------------------#
 
-
     #------------------------------------------------------------------------------#
     cqm = create_exam_scheduling_cqm(
         num_students,
@@ -177,15 +182,15 @@ def get_data(weights):
         DAYS,
         room_capacities,
         student_classes,
+        weights["weights"]
     )
     print("CQM CREATED...")
     #------------------------------------------------------------------------------#
 
-
     #------------------------------------------------------------------------------#
     # Solve with D-Wave's hybrid CQM solver
     sampler = LeapHybridCQMSampler()
-    solutions = sampler.sample_cqm(cqm, time_limit=3)
+    solutions = sampler.sample_cqm(cqm, time_limit=5)
     print("SOLVED...")
 
     # Filter to feasible solutions
@@ -217,6 +222,5 @@ def get_data(weights):
         check_solution.check_solution(data)
         return data
     #------------------------------------------------------------------------------#
-
 
     print("DONE.")
