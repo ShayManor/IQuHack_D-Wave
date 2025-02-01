@@ -4,6 +4,7 @@ import dimod
 from dwave.system import LeapHybridCQMSampler
 # import pprint
 import csv
+import check_solution
 #------------------------------------------------------------------------------#
 
 #------------------------------------------------------------------------------#
@@ -160,6 +161,18 @@ else:
     schedule = [k for k, val in best_sample.items() if val == 1]
     print("Optimized Exam Schedule:")
     print(schedule)
+
+    data = [] # list[(class, time, room)]
+
+    for row in schedule:
+        # x_b_t_d
+        b, t, d = row.split('_')[1:]
+        clas = classes[int(b)]
+        time = int(t)
+        room = int(d)
+        data.append((clas, time, room))
+
+    check_solution.check_solution(data)
 #------------------------------------------------------------------------------#
 
 
