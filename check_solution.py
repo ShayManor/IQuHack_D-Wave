@@ -8,10 +8,11 @@ def get_students_in_class(students: list, cl: str):
             count += 1
     return count
 
+
 def get_overlap(students: list, cl1: str, cl2: str):
     count = 0
     for s in students:
-        if cl1 in students[1] and cl2 in students[2]:
+        if cl1 in s[1] and cl2 in s[1]:
             count += 1
     return count
 
@@ -55,7 +56,7 @@ def check_solution(data: list[tuple[str, int, int]]) -> bool:  # (class: str, ti
         overlap_count /= 2
         print(f"Number of overlapping students: {overlap_count}")
 
-    #   Check that room is never too full
+        #   Check that room is never too full
         for cl, time, room in data:
             num_students = get_students_in_class(students, cl)
             if num_students > classrooms[room]:
