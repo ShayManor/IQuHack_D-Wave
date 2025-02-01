@@ -165,6 +165,7 @@ def get_data(weights):
     num_classes = len(classes)
     num_rooms = len(rooms)
 
+    print(f"Size: {num_classes * num_rooms * TIME_SLOTS_PER_DAY * days}")
 
     room_capacities = {r.id: r.capacity for r in rooms}
     student_classes = {s.id: s.classes for s in students}
