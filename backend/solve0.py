@@ -15,8 +15,8 @@ OBJECTIVE_WEIGHT = 1
 PENALTY_OVERLAPPING = 50
 PENALTY_CAPACITY = 2
 
-STUDENT_DATA_FILE = 'students.csv'
-ROOM_DATA_FILE = 'classrooms.csv'
+STUDENT_DATA_FILE = 'backend/students.csv'
+ROOM_DATA_FILE = 'backend/classrooms.csv'
 
 TIME_SLOTS_PER_DAY = 6
 

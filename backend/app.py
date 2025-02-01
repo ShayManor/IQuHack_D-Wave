@@ -12,7 +12,7 @@ CORS(app)
 @app.route("/students", methods=['GET'])
 def students():
     students = []
-    with open('students.csv', 'r') as f:
+    with open('backend/students.csv', 'r') as f:
         reader = csv.reader(f)
         for s in reader:
             students.append({"name": s[0], "schedule": s[1]})
@@ -23,6 +23,12 @@ def students():
 def make_schedule():
     weights = request.json
     return jsonify(get_data(weights))
+
+
+@app.route("/update-classrooms", methods=['POST'])
+def update_classrooms():
+    classrooms = request.json
+
 
 
 if __name__ == "__main__":

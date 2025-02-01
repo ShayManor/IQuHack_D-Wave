@@ -6,7 +6,7 @@ NUM_STUDENTS = 500
 TARGET_CLASSES_PER_STUDENT = 6
 CORE_CHANCE = 0.7
 
-STUDENT_DATA_FILE = 'students.csv'
+STUDENT_DATA_FILE = 'backend/students.csv'
 
 classes = { # classes[subject] = [class1, class2, ...]
     "science": ["Physics", "Chemistry", "Biology", "Computer Science"],

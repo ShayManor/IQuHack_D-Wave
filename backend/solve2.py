@@ -23,7 +23,7 @@ P_overlap = 50.0  # Adjust this weight as needed
 ###############################################################################
 # DATA LOADING FUNCTIONS
 ###############################################################################
-def load_student_data(filename='students.csv'):
+def load_student_data(filename='backend/students.csv'):
     """
     Loads student exam data.
 
@@ -50,7 +50,7 @@ def load_student_data(filename='students.csv'):
     return student_classes, class_students
 
 
-def load_classroom_data(filename='classrooms.csv'):
+def load_classroom_data(filename='backend/classrooms.csv'):
     """
     Loads classroom data.
 
@@ -161,8 +161,8 @@ def build_cqm(student_classes, class_students, room_capacities):
 ###############################################################################
 def main():
     # Load data from CSV files.
-    student_classes, class_students = load_student_data('students.csv')
-    room_capacities = load_classroom_data('classrooms.csv')
+    student_classes, class_students = load_student_data('backend/students.csv')
+    room_capacities = load_classroom_data('backend/classrooms.csv')
 
     # Build the CQM.
     cqm, x = build_cqm(student_classes, class_students, room_capacities)

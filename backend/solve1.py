@@ -42,7 +42,7 @@ def add_to_qubo(key, value, Q):
 ###############################################################################
 # DATA LOADING: READ THE STUDENTS CSV
 ###############################################################################
-def load_student_data(filename='students.csv'):
+def load_student_data(filename='backend/students.csv'):
     """
     Load student data from a CSV file.
     Expected CSV format:
@@ -185,7 +185,7 @@ def build_qubo(student_classes, class_students):
 ###############################################################################
 def main():
     # Load the student schedule data.
-    student_classes, class_students = load_student_data('students.csv')
+    student_classes, class_students = load_student_data('backend/students.csv')
 
     # Build the QUBO formulation.
     Q, variables = build_qubo(student_classes, class_students)
