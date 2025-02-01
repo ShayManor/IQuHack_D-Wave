@@ -131,7 +131,7 @@ num_classes = len(classes)
 num_rooms = len(rooms)
 TIME_SLOTS = 10
 
-print(f"Size: {num_students * num_classes * num_rooms * TIME_SLOTS}")
+print(f"Size: {num_classes * num_rooms * TIME_SLOTS}")
 
 room_capacities = {r.id: r.capacity for r in rooms}
 student_classes = {s.id: s.classes for s in students}
