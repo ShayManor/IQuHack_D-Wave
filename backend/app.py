@@ -3,7 +3,7 @@ import csv
 from flask import *
 from flask_cors import *
 
-from solve0 import get_data
+from solve import get_data
 
 app = Flask('Scheduler')
 CORS(app)
