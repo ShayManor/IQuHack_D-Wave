@@ -68,7 +68,7 @@ def create_exam_scheduling_cqm(
                 label=f'room_{d}_time_{t}_once'
             )
 
-    # Objective 1: Minimize exams closer to noon
+    # Objective 1: Priorize classes during weighted times
     objective = sum(
         x[b, t, d] * -weights[t % time_slots_per_day] * class_student_counts[b]
         for b in range(num_classes)
