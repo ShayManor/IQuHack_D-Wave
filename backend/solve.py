@@ -150,11 +150,11 @@ def read_room_data(filename):
 #------------------------------------------------------------------------------#
 def get_data(weights):
     yield json.dumps({"status": "Starting scheduling..."}) + "\n"
-    # print("STARTING SCHEDULING...")
+    print("\nSTARTING SCHEDULING...")
 
     #------------------------------------------------------------------------------#
     yield json.dumps({"status": "Loading user data..."}) + "\n"
-    # print("LOADING DATA...")
+    print("LOADING DATA...")
     days = weights['days']
     students, classes = read_student_data(STUDENT_DATA_FILE)
     rooms = read_room_data(ROOM_DATA_FILE)
@@ -168,12 +168,12 @@ def get_data(weights):
     student_classes = {s.id: s.classes for s in students}
 
     yield json.dumps({"status": "Data loaded..."}) + "\n"
-    # print("DATA LOADED...")
+    print("DATA LOADED...")
     #------------------------------------------------------------------------------#
 
     #------------------------------------------------------------------------------#
     yield json.dumps({"status": "Creating the Constrained Quadratic Model..."}) + "\n"
-    # print("CREATING CQM...")
+    print("CREATING CQM...")
     cqm = create_exam_scheduling_cqm(
         num_students,
         num_classes,
@@ -185,33 +185,33 @@ def get_data(weights):
         weights["weights"]
     )
     yield json.dumps({"status": "Constrained Quadratic Model created..."}) + "\n"
-    # print("CQM CREATED...")
+    print("CQM CREATED...")
     #------------------------------------------------------------------------------#
 
     #------------------------------------------------------------------------------#
     yield json.dumps({"status": "Submitting to solver..."}) + "\n"
-    # print("SUBMITTING TO SOLVER...")
+    print("SUBMITTING TO SOLVER...")
     # Solve with D-Wave's hybrid CQM solver
     sampler = LeapHybridCQMSampler()
     solutions = sampler.sample_cqm(cqm, time_limit=5)
-    # print("SOLVED...")
+    print("SOLVED...")
 
     yield json.dumps({"status": "Filtering solutions..."}) + "\n"
-    # print("FILTERING SOLUTIONS...")
+    print("FILTERING SOLUTIONS...")
     # Filter to feasible solutions
     feasaible = solutions.filter(lambda row: row.is_feasible)
-    # print("FEASIBLE SOLUTIONS...")
+    print("FEASIBLE SOLUTIONS...")
 
     if len(feasaible) == 0:
         yield json.dumps({"status": "No feasible solutions found."}) + "\n"
-        # print("No feasible solutions found.")
+        print("No feasible solutions found.")
         return
 
 
     best_sample = feasaible.first.sample
     schedule = [k for k, val in best_sample.items() if val == 1]
-    # print("Optimized Exam Schedule:")
-    # print(schedule)
+    print("Optimized Exam Schedule:")
+    print(schedule)
 
     data = []  # list[(class, time, room)]
 
