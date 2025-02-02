@@ -105,6 +105,20 @@
       margin-bottom: 3px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     }
+    #notification {
+        float: right;
+        font-size: 12px;
+        font-style: normal italic;
+
+        width: fit-content;
+        padding-bottom: 1.5px;
+
+        background: linear-gradient(currentColor 0 0) 0 100%/0% 1px no-repeat;
+        animation: loading 3s linear infinite;
+    }
+    @keyframes loading {
+        to { background-size: 100% 1px }
+    }
   </style>
 </head>
 <body>
@@ -117,7 +131,11 @@
 
   <!-- Main Content -->
   <div class="container mt-5 pt-3">
-    <h2 class="section-title">Time Weight Graph & Schedule Creator</h2>
+    <h2 class="section-title">Time Weight Graph & Schedule Creator <div id="notification" style="display: none;"></div></h2>
+
+    <!-- Schedule Result Display (Calendar) -->
+    <div id="schedule-result" class="mt-4"></div>
+
     <div class="row">
       <!-- Left Column: Graph and Classroom Selection -->
       <div class="col-md-6">
@@ -152,8 +170,6 @@
         </div>
       </div>
     </div>
-    <!-- Schedule Result Display (Calendar) -->
-    <div id="schedule-result" class="mt-4"></div>
   </div>
 
   <!-- Bootstrap Bundle with Popper -->
@@ -303,17 +319,59 @@
     /***********************************************
      * API Call to Create Schedule (unchanged)
      ***********************************************/
+    // async function submitSchedule(payload) {
+    //     console.log("Submitting payload:", payload);
+    //     const response = await fetch("http://localhost:8000/make-schedule", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify(payload)
+    //     });
+    //     if (!response.ok) {
+    //         throw new Error("Network response was not ok");
+    //     }
+    //     return response.json();
+    // }
+
     async function submitSchedule(payload) {
-      console.log("Submitting payload:", payload);
-      const response = await fetch("http://localhost:8000/make-schedule", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
+        console.log("Submitting payload:", payload);
+
+        const response = await fetch("http://localhost:8000/make-schedule", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        });
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        // const output = document.getElementById('output');
+        let last_value = null;
+
+        let notification_element = document.getElementById('notification');
+        notification_element.textContent = 'Processing...';
+        notification_element.style.display = 'block';
+
+        while (true) {
+            console.log(last_value);
+            const { done, value } = await reader.read();
+            if (done) {
+                notification_element.style.display = 'none';
+                return last_value;
+            }
+
+            // Decode the streamed chunk
+            const chunk = decoder.decode(value, { stream: true });
+
+            // Split the chunk by newlines (in case multiple JSON objects arrive together)
+            const lines = chunk.split('\n').filter(line => line.trim() !== '');
+
+            // Last line
+            last_value = JSON.parse(lines[lines.length - 1]);
+
+            notification_element.textContent = last_value.status;
+        }
     }
 
     /***********************************************
@@ -364,6 +422,7 @@
         }
       });
       resultDiv.appendChild(calendarContainer);
+      resultDiv.appendChild(document.createElement('hr'));
     }
 
     /***********************************************
