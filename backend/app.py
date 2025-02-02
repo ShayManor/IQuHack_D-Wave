@@ -3,7 +3,7 @@ import csv
 from flask import *
 from flask_cors import *
 
-from solve0 import get_data
+from solve import get_data
 
 app = Flask('Scheduler')
 CORS(app)
@@ -22,7 +22,7 @@ def students():
 @app.route("/make-schedule", methods=['POST'])
 def make_schedule():
     weights = request.json
-    return jsonify(get_data(weights))
+    return stream_with_context(get_data(weights))
 
 
 @app.route("/get-classrooms", methods=['GET'])
