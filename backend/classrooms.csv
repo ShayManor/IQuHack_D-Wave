@@ -1,8 +1,8 @@
-id,capacity,name,status
-0,200,WALC,False
-1,75,CL50,False
+id,capacity
+0,200,WALC,True
+1,75,CL50,True
 2,300,BRNG,True
-3,250,Lawson,False
+3,250,Lawson,True
 4,300,PMU,True
 5,100,Data Science,True
 6,125,BHEE,True

@@ -3,6 +3,7 @@ import csv
 from flask import *
 from flask_cors import *
 
+from backend.c_solve import classical_exam_scheduling
 from solve import get_data
 
 app = Flask('Scheduler')
@@ -23,6 +24,11 @@ def students():
 def make_schedule():
     weights = request.json
     return stream_with_context(get_data(weights))
+
+@app.route("/make-schedule-classic", methods=['POST'])
+def make_schedule_classic():
+    weights = request.json
+    return stream_with_context(classical_exam_scheduling(weights))
 
 
 @app.route("/get-classrooms", methods=['GET'])
