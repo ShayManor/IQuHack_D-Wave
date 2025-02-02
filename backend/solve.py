@@ -109,8 +109,9 @@ class Student:
 
 
 class Room:
-    def __init__(self, id, capacity):
+    def __init__(self, id, index, capacity):
         self.id = id
+        self.index = index
         self.capacity = capacity
 
 
@@ -142,9 +143,9 @@ def read_room_data(filename):
         i = 0
         for row in reader:
             if row[3] == "True":
-                room_id = i
+                room_id = int(row[0])
                 room_capacity = int(row[1])
-                all_rooms.append(Room(room_id, room_capacity))
+                all_rooms.append(Room(room_id, i, room_capacity))
                 i += 1
 
     return all_rooms
@@ -167,7 +168,7 @@ def get_data(weights):
 
     # print(f"Size: {num_classes * num_rooms * TIME_SLOTS_PER_DAY * days}")
 
-    room_capacities = {r.id: r.capacity for r in rooms}
+    room_capacities = {r.index: r.capacity for r in rooms}
     student_classes = {s.id: s.classes for s in students}
 
     yield json.dumps({"status": "Data loaded"}) + "\n"
