@@ -25,10 +25,31 @@ def make_schedule():
     return jsonify(get_data(weights))
 
 
+@app.route("/get-classrooms", methods=['GET'])
+def get_classrooms():
+    data = []
+    with open("backend/classrooms.csv", "r") as f:
+        next(f)
+        reader = csv.reader(f)
+        for row in reader:
+            data.append({"id": int(row[0]),
+                         "capacity": row[1],
+                         "name": row[2],
+                         "selected": row[3] == "False",
+                         })
+        print(data)
+    return jsonify(data)
+
+
 @app.route("/update-classrooms", methods=['POST'])
 def update_classrooms():
-    classrooms = request.json
-
+    classrooms = request.json["classrooms"]
+    with open("backend/classrooms.csv", "w") as w:
+        writer = csv.writer(w)
+        writer.writerow(["id", "capacity"])
+        for classroom in classrooms:
+            writer.writerow([classroom["id"], classroom["capacity"], classroom["name"], classroom["selected"]])
+    return classrooms
 
 
 if __name__ == "__main__":

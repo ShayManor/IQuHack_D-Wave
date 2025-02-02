@@ -1,239 +1,391 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Finals Schedule Builder</title>
-    <!-- Google Fonts for a modern look -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-    <!-- Bootstrap CSS -->
-    <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-    />
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            background: #f8f9fa;
-            font-family: 'Roboto', sans-serif;
-        }
-        .navbar {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .section-title {
-            margin-top: 30px;
-            margin-bottom: 20px;
-        }
-        .slider-label {
-            font-weight: 500;
-        }
-        .chart-container {
-            position: relative;
-            height: 300px;
-        }
-        .card {
-            margin-bottom: 20px;
-            border: none;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        .card-header {
-            background-color: #ffffff;
-            border-bottom: none;
-            font-size: 1.25rem;
-            font-weight: 500;
-        }
-        /* Custom styling for the sliders */
-        .form-range {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 6px;
-            background: #d3d3d3;
-            border-radius: 5px;
-            outline: none;
-        }
-        .form-range::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #007bff;
-            cursor: pointer;
-        }
-        .form-range::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #007bff;
-            cursor: pointer;
-        }
-        /* Calendar Styles */
-        .calendar-container {
-            display: grid;
-            grid-template-columns: 80px repeat(var(--days), 1fr);
-            grid-auto-rows: auto; /* Changed from fixed height (80px) to auto */
-            gap: 1px;
-            background: #ddd;
-            margin-top: 20px;
-        }
-        .calendar-header {
-            background: #fff;
-            text-align: center;
-            font-weight: 500;
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        .time-label {
-            background: #fff;
-            text-align: right;
-            padding: 10px;
-            border-right: 1px solid #ddd;
-        }
-        .calendar-cell {
-            background: #fff;
-            position: relative;
-            border: 1px solid #ddd;
-            padding: 5px;
-            overflow: auto;
-        }
-        .event-block {
-            color: #fff;
-            border-radius: 4px;
-            padding: 5px;
-            font-size: 0.8rem;
-            margin-bottom: 3px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finals Schedule Builder</title>
+  <!-- Google Fonts for a modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: 'Roboto', sans-serif;
+    }
+    .navbar {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .section-title {
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
+    .slider-label {
+      font-weight: 500;
+    }
+    .chart-container {
+      position: relative;
+      height: 300px;
+    }
+    .card {
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card-header {
+      background-color: #ffffff;
+      border-bottom: none;
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+    /* Custom styling for the sliders (kept for the graph section) */
+    .form-range {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      background: #d3d3d3;
+      border-radius: 5px;
+      outline: none;
+    }
+    .form-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #007bff;
+      cursor: pointer;
+    }
+    .form-range::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #007bff;
+      cursor: pointer;
+    }
+    /* Calendar Styles (unchanged) */
+    .calendar-container {
+      display: grid;
+      grid-template-columns: 80px repeat(var(--days), 1fr);
+      grid-auto-rows: auto;
+      gap: 1px;
+      background: #ddd;
+      margin-top: 20px;
+    }
+    .calendar-header {
+      background: #fff;
+      text-align: center;
+      font-weight: 500;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .time-label {
+      background: #fff;
+      text-align: right;
+      padding: 10px;
+      border-right: 1px solid #ddd;
+    }
+    .calendar-cell {
+      background: #fff;
+      position: relative;
+      border: 1px solid #ddd;
+      padding: 5px;
+      overflow: auto;
+    }
+    .event-block {
+      color: #fff;
+      border-radius: 4px;
+      padding: 5px;
+      font-size: 0.8rem;
+      margin-bottom: 3px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+  </style>
 </head>
 <body>
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Purdue Finals Schedule Builder</a>
+      <a class="navbar-brand" href="#">Purdue Finals Schedule Builder</a>
     </div>
-</nav>
+  </nav>
 
-<!-- Main Content -->
-<div class="container mt-5 pt-3">
+  <!-- Main Content -->
+  <div class="container mt-5 pt-3">
     <h2 class="section-title">Time Weight Graph & Schedule Creator</h2>
     <div class="row">
-        <!-- Graph Column -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Time Weight Graph</div>
-                <div class="card-body">
-                    <div class="chart-container">
-                        <canvas id="timeChart"></canvas>
-                    </div>
-                </div>
+      <!-- Left Column: Graph and Classroom Selection -->
+      <div class="col-md-6">
+        <!-- Graph Card -->
+        <div class="card" id="graph-card">
+          <div class="card-header">Time Weight Graph</div>
+          <div class="card-body">
+            <div class="chart-container">
+              <canvas id="timeChart"></canvas>
             </div>
+          </div>
         </div>
-        <!-- Sliders Column -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">Adjust Time Weights & Parameters</div>
-                <div class="card-body">
-                    <!-- Additional Parameters -->
-                    <div id="additional-params" class="mb-4"></div>
-                    <!-- Time Weight Sliders -->
-                    <div id="slider-container"></div>
-                    <button id="submit-schedule" type="button" class="btn btn-primary mt-3 w-100">
-                        Create Schedule
-                    </button>
-                </div>
-            </div>
+        <!-- Classroom Selection Card (loaded from GET endpoint) -->
+        <div class="card mt-3" id="classroom-card">
+          <div class="card-header">Classrooms</div>
+          <div class="card-body">
+            <div id="classroom-container"></div>
+          </div>
         </div>
+      </div>
+      <!-- Right Column: Adjust Time Weights & Parameters -->
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Adjust Time Weights & Parameters</div>
+          <div class="card-body">
+            <div id="additional-params" class="mb-4"></div>
+            <div id="slider-container"></div>
+            <button id="submit-schedule" type="button" class="btn btn-primary mt-3 w-100">
+              Create Schedule
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Schedule Result Display (Calendar) -->
     <div id="schedule-result" class="mt-4"></div>
-</div>
+  </div>
 
-<!-- Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Main JavaScript Code -->
-<script>
+  <!-- Main JavaScript Code -->
+  <script>
     /***********************************************
-     * Subject Colors Setup
+     * Subject Colors Setup (unchanged)
      ***********************************************/
     const subjectColors = {};
     const availableColors = [
-        "rgba(237,112,112,0.6)", "rgba(121,241,121,0.49)", "#8686ef", "#a58546", "#66ccff",
-        "rgba(152,91,181,0.43)", "rgba(204,97,168,0.6)", "rgba(101,198,165,0.48)", "rgba(170,177,106,0.63)"
+      "rgba(237,112,112,0.6)", "rgba(121,241,121,0.49)", "#8686ef", "#a58546", "#66ccff",
+      "rgba(152,91,181,0.43)", "rgba(204,97,168,0.6)", "rgba(101,198,165,0.48)", "rgba(170,177,106,0.63)"
     ];
     let colorIndex = 0;
     function getColorForSubject(subject) {
-        if (subjectColors[subject]) {
-            return subjectColors[subject];
-        } else {
-            const color = availableColors[colorIndex % availableColors.length];
-            subjectColors[subject] = color;
-            colorIndex++;
-            return color;
-        }
+      if (subjectColors[subject]) {
+        return subjectColors[subject];
+      } else {
+        const color = availableColors[colorIndex % availableColors.length];
+        subjectColors[subject] = color;
+        colorIndex++;
+        return color;
+      }
     }
 
     /***********************************************
-     * Configuration and Initialization
+     * Configuration and Initialization for Graph & Calendar (unchanged)
      ***********************************************/
     const timeSlots = [
-        "8:00 AM", "10:00 AM", "12:00 PM", "2:00 PM", "4:00 PM", "6:00 PM"
+      "8:00 AM", "10:00 AM", "12:00 PM", "2:00 PM", "4:00 PM", "6:00 PM"
     ];
     const initialWeights = new Array(timeSlots.length).fill(1);
     let timeChart; // Will hold our Chart.js instance.
 
     /***********************************************
-     * Initialize the Graph (Chart.js)
+     * Initialize the Graph (Chart.js) (unchanged)
      ***********************************************/
     function initTimeWeightGraph() {
-        const ctx = document.getElementById('timeChart').getContext('2d');
-        timeChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: timeSlots,
-                datasets: [{
-                    label: 'Weight',
-                    data: initialWeights.slice(),
-                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1
-                        }
-                    }
-                }
+      const ctx = document.getElementById('timeChart').getContext('2d');
+      timeChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: timeSlots,
+          datasets: [{
+            label: 'Weight',
+            data: initialWeights.slice(),
+            backgroundColor: 'rgba(54, 162, 235, 0.6)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1
+              }
             }
-        });
+          }
+        }
+      });
     }
 
     /***********************************************
-     * Render Additional Parameter Sliders
+     * Classroom List Functions
      ***********************************************/
-    function renderAdditionalParams() {
+    // Global variable to hold classroom data
+    let classroomsData = [];
+    // Fetch the list of classrooms from the GET endpoint
+    async function fetchClassrooms() {
+      try {
+        const response = await fetch("http://localhost:8000/get-classrooms");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        // Assuming the response has a property "classrooms" that is an array
+        classroomsData = data;
+        renderClassroomCheckboxes();
+      } catch (error) {
+        console.error("Error fetching classrooms:", error);
+      }
+    }
+    console.log(classroomsData)
+
+    // Render the list of classroom checkboxes
+    function renderClassroomCheckboxes() {
+      const container = document.getElementById('classroom-container');
+      container.innerHTML = ''; // Clear previous content.
+      classroomsData.forEach(classroom => {
+        const div = document.createElement('div');
+        div.className = 'form-check mb-2';
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'form-check-input';
+        checkbox.id = classroom.id;
+        // Set the checkbox checked state based on classroom.selected
+        checkbox.checked = classroom.selected;
+        const label = document.createElement('label');
+        label.className = 'form-check-label';
+        label.htmlFor = classroom.id;
+        label.innerText = `${classroom.name} (Capacity: ${classroom.capacity})`;
+        // When the checkbox changes, update the local data and post the full list.
+        checkbox.addEventListener('change', function(e) {
+          const selected = e.target.checked;
+          // Update the corresponding classroom in classroomsData
+          classroomsData = classroomsData.map(item => {
+            if (item.id === classroom.id) {
+              return { ...item, selected: selected };
+            }
+            return item;
+          });
+          // Send the updated list via POST
+          updateClassrooms();
+        });
+        div.appendChild(checkbox);
+        div.appendChild(label);
+        container.appendChild(div);
+      });
+    }
+
+    // Send the entire updated list of classrooms to the POST endpoint
+    async function updateClassrooms() {
+      try {
+        const response = await fetch("http://localhost:8000/update-classrooms", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ classrooms: classroomsData })
+        });
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        classroomsData = await response.json();
+        // Update classroomsData with the response and re-render
+        renderClassroomCheckboxes();
+        // await fetchClassrooms();
+      } catch (error) {
+        console.error("Error updating classrooms:", error);
+      }
+    }
+
+    /***********************************************
+     * API Call to Create Schedule (unchanged)
+     ***********************************************/
+    async function submitSchedule(payload) {
+      console.log("Submitting payload:", payload);
+      const response = await fetch("http://localhost:8000/make-schedule", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    }
+
+    /***********************************************
+     * Display Schedule Result as a Calendar (unchanged)
+     ***********************************************/
+    function displayScheduleResult(data) {
+      const resultDiv = document.getElementById('schedule-result');
+      resultDiv.innerHTML = '';
+      const overlapP = document.createElement('p');
+      overlapP.innerHTML = `<strong>Number of Overlaps:</strong> ${data.overlaps}`;
+      resultDiv.appendChild(overlapP);
+      // Use 5 days as default (or get from controls if available)
+      const days = 5;
+      const calendarContainer = document.createElement('div');
+      calendarContainer.className = 'calendar-container';
+      calendarContainer.style.setProperty('--days', days);
+      // Header row
+      const timeHeader = document.createElement('div');
+      timeHeader.className = 'calendar-header';
+      timeHeader.textContent = 'Time';
+      calendarContainer.appendChild(timeHeader);
+      for (let d = 1; d <= days; d++) {
+        const dayHeader = document.createElement('div');
+        dayHeader.className = 'calendar-header';
+        dayHeader.textContent = `Day ${d}`;
+        calendarContainer.appendChild(dayHeader);
+      }
+      // Calendar rows (using index for matching)
+      timeSlots.forEach((timeLabel, idx) => {
+        const timeCell = document.createElement('div');
+        timeCell.className = 'time-label';
+        timeCell.textContent = timeLabel;
+        calendarContainer.appendChild(timeCell);
+        for (let d = 1; d <= days; d++) {
+          const cell = document.createElement('div');
+          cell.className = 'calendar-cell';
+          const tests = data.schedule.filter(item => parseInt(item.day) === d && item.time === idx);
+          tests.forEach(test => {
+            const eventBlock = document.createElement('div');
+            eventBlock.className = 'event-block';
+            const subjectColor = getColorForSubject(test.subject);
+            eventBlock.style.backgroundColor = subjectColor;
+            eventBlock.style.border = `1px solid ${subjectColor}`;
+            eventBlock.innerHTML = `<strong>${test.subject}</strong><br>Room: ${test.room}<br>Students: ${test.students}`;
+            cell.appendChild(eventBlock);
+          });
+          calendarContainer.appendChild(cell);
+        }
+      });
+      resultDiv.appendChild(calendarContainer);
+    }
+
+    /***********************************************
+     * Initialization on Page Load
+     ***********************************************/
+    document.addEventListener('DOMContentLoaded', function() {
+      initTimeWeightGraph();
+      // Fetch classrooms from the GET endpoint and render checkboxes under the graph.
+      fetchClassrooms();
+      // The controls on the right remain unchanged.
+      // Render Additional Parameters and Time Weight Sliders (for the right column)
+      function renderAdditionalParams() {
         const additionalParamsContainer = document.getElementById('additional-params');
         additionalParamsContainer.innerHTML = '';
-
-        // Slider for Number of Days (range 1-5)
         const daysDiv = document.createElement('div');
         daysDiv.className = 'mb-3';
         const daysLabel = document.createElement('label');
         daysLabel.htmlFor = 'slider-days';
         daysLabel.className = 'form-label slider-label';
         daysLabel.textContent = 'Number of Days';
-
         const daysRow = document.createElement('div');
         daysRow.className = 'd-flex align-items-center';
-
         const daysInput = document.createElement('input');
         daysInput.type = 'range';
         daysInput.className = 'form-range flex-grow-1';
@@ -241,226 +393,106 @@
         daysInput.max = '5';
         daysInput.value = '5';
         daysInput.id = 'slider-days';
-
         const daysValue = document.createElement('span');
         daysValue.id = 'slider-days-value';
         daysValue.className = 'ms-2';
         daysValue.style.width = '30px';
         daysValue.textContent = daysInput.value;
-
         daysInput.addEventListener('input', function(e) {
-            daysValue.textContent = e.target.value;
+          daysValue.textContent = e.target.value;
         });
-
         daysRow.appendChild(daysInput);
         daysRow.appendChild(daysValue);
         daysDiv.appendChild(daysLabel);
         daysDiv.appendChild(daysRow);
         additionalParamsContainer.appendChild(daysDiv);
-
-        // Slider for Additional Parameter (range 1-5)
         const additionalDiv = document.createElement('div');
         additionalDiv.className = 'mb-3';
         const additionalLabel = document.createElement('label');
         additionalLabel.htmlFor = 'slider-additional';
         additionalLabel.className = 'form-label slider-label';
-        additionalLabel.textContent = 'Additional Parameter (1-5)';
-
+        // additionalLabel.textContent = 'Additional Parameter (1-5)';
         const additionalRow = document.createElement('div');
         additionalRow.className = 'd-flex align-items-center';
-
-        const additionalInput = document.createElement('input');
-        additionalInput.type = 'range';
-        additionalInput.className = 'form-range flex-grow-1';
-        additionalInput.min = '1';
-        additionalInput.max = '5';
-        additionalInput.value = '3';
-        additionalInput.id = 'slider-additional';
-
+        // const additionalInput = document.createElement('input');
+        // additionalInput.type = 'range';
+        // additionalInput.className = 'form-range flex-grow-1';
+        // additionalInput.min = '1';
+        // additionalInput.max = '5';
+        // additionalInput.value = '3';
+        // additionalInput.id = 'slider-additional';
         const additionalValue = document.createElement('span');
         additionalValue.id = 'slider-additional-value';
         additionalValue.className = 'ms-2';
         additionalValue.style.width = '30px';
-        additionalValue.textContent = additionalInput.value;
-
-        additionalInput.addEventListener('input', function(e) {
-            additionalValue.textContent = e.target.value;
-        });
-
-        additionalRow.appendChild(additionalInput);
         additionalRow.appendChild(additionalValue);
         additionalDiv.appendChild(additionalLabel);
         additionalDiv.appendChild(additionalRow);
         additionalParamsContainer.appendChild(additionalDiv);
-    }
-
-    /***********************************************
-     * Render the Time Weight Sliders
-     ***********************************************/
-    function renderSliders() {
+      }
+      function renderSliders() {
         const sliderContainer = document.getElementById('slider-container');
         sliderContainer.innerHTML = '';
-
         timeSlots.forEach((time, index) => {
-            const div = document.createElement('div');
-            div.className = 'mb-3';
-
-            const label = document.createElement('label');
-            label.htmlFor = 'slider-' + index;
-            label.className = 'form-label slider-label';
-            label.textContent = time;
-
-            const sliderRow = document.createElement('div');
-            sliderRow.className = 'd-flex align-items-center';
-
-            const input = document.createElement('input');
-            input.type = 'range';
-            input.className = 'form-range flex-grow-1';
-            input.min = '1';
-            input.max = '10';
-            input.value = initialWeights[index];
-            input.id = 'slider-' + index;
-            input.dataset.index = index;
-
-            const valueSpan = document.createElement('span');
-            valueSpan.id = 'slider-value-' + index;
-            valueSpan.className = 'ms-2';
-            valueSpan.style.width = '30px';
-            valueSpan.textContent = input.value;
-
-            input.addEventListener('input', function(e) {
-                const idx = e.target.dataset.index;
-                const newValue = Number(e.target.value);
-                document.getElementById('slider-value-' + idx).textContent = newValue;
-                timeChart.data.datasets[0].data[idx] = newValue;
-                timeChart.update();
-            });
-
-            sliderRow.appendChild(input);
-            sliderRow.appendChild(valueSpan);
-
-            div.appendChild(label);
-            div.appendChild(sliderRow);
-            sliderContainer.appendChild(div);
+          const div = document.createElement('div');
+          div.className = 'mb-3';
+          const label = document.createElement('label');
+          label.htmlFor = 'slider-' + index;
+          label.className = 'form-label slider-label';
+          label.textContent = time;
+          const sliderRow = document.createElement('div');
+          sliderRow.className = 'd-flex align-items-center';
+          const input = document.createElement('input');
+          input.type = 'range';
+          input.className = 'form-range flex-grow-1';
+          input.min = '1';
+          input.max = '10';
+          input.value = initialWeights[index];
+          input.id = 'slider-' + index;
+          input.dataset.index = index;
+          const valueSpan = document.createElement('span');
+          valueSpan.id = 'slider-value-' + index;
+          valueSpan.className = 'ms-2';
+          valueSpan.style.width = '30px';
+          valueSpan.textContent = input.value;
+          input.addEventListener('input', function(e) {
+            const idx = e.target.dataset.index;
+            const newValue = Number(e.target.value);
+            document.getElementById('slider-value-' + idx).textContent = newValue;
+            timeChart.data.datasets[0].data[idx] = newValue;
+            timeChart.update();
+          });
+          sliderRow.appendChild(input);
+          sliderRow.appendChild(valueSpan);
+          div.appendChild(label);
+          div.appendChild(sliderRow);
+          sliderContainer.appendChild(div);
         });
-    }
-
-    /***********************************************
-     * API Call to Create Schedule (Using localhost:8000)
-     ***********************************************/
-    async function submitSchedule(payload) {
-        console.log("Submitting payload:", payload);
-        const response = await fetch("http://localhost:8000/make-schedule", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload)
-        });
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-        return response.json();
-    }
-
-    /***********************************************
-     * Handle Form Submission
-     ***********************************************/
-    async function handleSubmitSchedule() {
+      }
+      renderAdditionalParams();
+      renderSliders();
+      document.getElementById('submit-schedule').addEventListener('click', async function() {
         const daysValue = Number(document.getElementById('slider-days').value);
         const timeWeights = timeSlots.map((time, index) => {
-            const slider = document.getElementById('slider-' + index);
-            return Number(slider.value);
+          const slider = document.getElementById('slider-' + index);
+          return Number(slider.value);
         });
-
-        const payload = {
-            days: daysValue,
-            weights: timeWeights
-        };
-
+        const payload = { days: daysValue, weights: timeWeights };
         const submitButton = document.getElementById('submit-schedule');
         submitButton.disabled = true;
         submitButton.textContent = 'Submitting...';
-
         try {
-            const result = await submitSchedule(payload);
-            displayScheduleResult(result);
+          const result = await submitSchedule(payload);
+          displayScheduleResult(result);
         } catch (error) {
-            console.error("Error submitting schedule:", error);
-            alert("Error submitting schedule.");
+          console.error("Error submitting schedule:", error);
+          alert("Error submitting schedule.");
         } finally {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Create Schedule';
+          submitButton.disabled = false;
+          submitButton.textContent = 'Create Schedule';
         }
-    }
-
-    /***********************************************
-     * Display Schedule Result as a Calendar
-     ***********************************************/
-    function displayScheduleResult(data) {
-        const resultDiv = document.getElementById('schedule-result');
-        resultDiv.innerHTML = '';
-
-        const overlapP = document.createElement('p');
-        overlapP.innerHTML = `<strong>Number of Overlaps:</strong> ${data.overlaps}`;
-        resultDiv.appendChild(overlapP);
-
-        const days = Number(document.getElementById('slider-days').value);
-        const calendarContainer = document.createElement('div');
-        calendarContainer.className = 'calendar-container';
-        calendarContainer.style.setProperty('--days', days);
-
-        // Header row
-        const timeHeader = document.createElement('div');
-        timeHeader.className = 'calendar-header';
-        timeHeader.textContent = 'Time';
-        calendarContainer.appendChild(timeHeader);
-        for (let d = 1; d <= days; d++) {
-            const dayHeader = document.createElement('div');
-            dayHeader.className = 'calendar-header';
-            dayHeader.textContent = `Day ${d}`;
-            calendarContainer.appendChild(dayHeader);
-        }
-
-        // Calendar rows based on time slots (using index for matching)
-        timeSlots.forEach((timeLabel, idx) => {
-            const timeCell = document.createElement('div');
-            timeCell.className = 'time-label';
-            timeCell.textContent = timeLabel;
-            calendarContainer.appendChild(timeCell);
-
-            for (let d = 1; d <= days; d++) {
-                const cell = document.createElement('div');
-                cell.className = 'calendar-cell';
-
-                // Use the numeric index (idx) for matching the test "time"
-                const tests = data.schedule.filter(item => parseInt(item.day) === d && item.time === idx);
-                tests.forEach(test => {
-                    const eventBlock = document.createElement('div');
-                    eventBlock.className = 'event-block';
-                    // Set a unique background color for each subject.
-                    const subjectColor = getColorForSubject(test.subject);
-                    eventBlock.style.backgroundColor = subjectColor;
-                    eventBlock.style.border = `1px solid ${subjectColor}`;
-                    eventBlock.innerHTML = `<strong>${test.subject}</strong><br>Room: ${test.room}<br>Students: ${test.students}`;
-                    cell.appendChild(eventBlock);
-                });
-                calendarContainer.appendChild(cell);
-            }
-        });
-
-        resultDiv.appendChild(calendarContainer);
-    }
-
-    /***********************************************
-     * Initialization on Page Load
-     ***********************************************/
-    document.addEventListener('DOMContentLoaded', function() {
-        initTimeWeightGraph();
-        renderAdditionalParams();
-        renderSliders();
-        document.getElementById('submit-schedule').addEventListener('click', handleSubmitSchedule);
+      });
     });
-</script>
+  </script>
 </body>
 </html>

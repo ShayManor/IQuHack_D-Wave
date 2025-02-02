@@ -141,9 +141,10 @@ def read_room_data(filename):
         reader = csv.reader(f)
         next(reader, None)
         for row in reader:
-            room_id = int(row[0])
-            room_capacity = int(row[1])
-            all_rooms.append(Room(room_id, room_capacity))
+            if row[3] == "True":
+                room_id = int(row[0])
+                room_capacity = int(row[1])
+                all_rooms.append(Room(room_id, room_capacity))
 
     return all_rooms
 
