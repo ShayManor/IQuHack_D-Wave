@@ -110,6 +110,15 @@
             float: right;
             font-size: 12px;
             font-style: normal italic;
+
+            width: fit-content;
+            padding-bottom: 1.5px;
+
+            background: linear-gradient(currentColor 0 0) 0 100%/0% 1px no-repeat;
+            animation: loading 3s linear infinite;
+        }
+        @keyframes loading {
+            to { background-size: 100% 1px }
         }
     </style>
 </head>
@@ -428,7 +437,7 @@
 
         const submitButton = document.getElementById('submit-schedule');
         submitButton.disabled = true;
-        submitButton.textContent = 'Submitting...';
+        submitButton.textContent = 'Calculating...';
 
         try {
             const result = await submitSchedule(payload);
