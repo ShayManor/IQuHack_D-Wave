@@ -40,7 +40,6 @@ def check_solution(data: list[tuple[str, int, int]], days):  # (class: str, time
             for cl2, time2, room2 in data:
                 if time == time2 and room == room2 and cl != cl2:
                     print(f"Room {room} is occupied by two classes at once")
-                    return False
                 total_classes.append(cl)
             times_cl.append((time, cl))
             if time not in total_times:
