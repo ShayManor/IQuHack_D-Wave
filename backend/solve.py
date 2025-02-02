@@ -149,11 +149,11 @@ def read_room_data(filename):
 
 #------------------------------------------------------------------------------#
 def get_data(weights):
-    yield json.dumps({"status": "Starting scheduling..."}) + "\n"
+    yield json.dumps({"status": "Starting scheduling"}) + "\n"
     print("\nSTARTING SCHEDULING...")
 
     #------------------------------------------------------------------------------#
-    yield json.dumps({"status": "Loading user data..."}) + "\n"
+    yield json.dumps({"status": "Loading user data"}) + "\n"
     print("LOADING DATA...")
     days = weights['days']
     students, classes = read_student_data(STUDENT_DATA_FILE)
@@ -167,12 +167,12 @@ def get_data(weights):
     room_capacities = {r.id: r.capacity for r in rooms}
     student_classes = {s.id: s.classes for s in students}
 
-    yield json.dumps({"status": "Data loaded..."}) + "\n"
+    yield json.dumps({"status": "Data loaded"}) + "\n"
     print("DATA LOADED...")
     #------------------------------------------------------------------------------#
 
     #------------------------------------------------------------------------------#
-    yield json.dumps({"status": "Creating the Constrained Quadratic Model..."}) + "\n"
+    yield json.dumps({"status": "Creating the Constrained Quadratic Model"}) + "\n"
     print("CREATING CQM...")
     cqm = create_exam_scheduling_cqm(
         num_students,
@@ -184,19 +184,19 @@ def get_data(weights):
         student_classes,
         weights["weights"]
     )
-    yield json.dumps({"status": "Constrained Quadratic Model created..."}) + "\n"
+    yield json.dumps({"status": "Constrained Quadratic Model created"}) + "\n"
     print("CQM CREATED...")
     #------------------------------------------------------------------------------#
 
     #------------------------------------------------------------------------------#
-    yield json.dumps({"status": "Submitting to solver..."}) + "\n"
+    yield json.dumps({"status": "Submitting to solver"}) + "\n"
     print("SUBMITTING TO SOLVER...")
     # Solve with D-Wave's hybrid CQM solver
     sampler = LeapHybridCQMSampler()
     solutions = sampler.sample_cqm(cqm, time_limit=5)
     print("SOLVED...")
 
-    yield json.dumps({"status": "Filtering solutions..."}) + "\n"
+    yield json.dumps({"status": "Filtering solutions"}) + "\n"
     print("FILTERING SOLUTIONS...")
     # Filter to feasible solutions
     feasaible = solutions.filter(lambda row: row.is_feasible)
@@ -224,6 +224,6 @@ def get_data(weights):
         data.append((clas, time, room))
 
     
-    yield json.dumps({"status": "Assembling final schedule..."}) + "\n"
+    yield json.dumps({"status": "Assembling final schedule"}) + "\n"
     yield json.dumps(check_solution.check_solution(data, days)) + "\n"
     #------------------------------------------------------------------------------#
