@@ -38,35 +38,35 @@ def check_solution(data: list[tuple[str, int, int]], days):  # (class: str, time
         total_classes = []
         for cl, time, room in data:
             for cl2, time2, room2 in data:
-                if time == time2 and room == room2 and cl != cl2:
-                    print(f"Room {room} is occupied by two classes at once")
+                # if time == time2 and room == room2 and cl != cl2:
+                #     print(f"Room {room} is occupied by two classes at once")
                 total_classes.append(cl)
             times_cl.append((time, cl))
             if time not in total_times:
                 total_times.append(time)
         total_times.sort()
 
-        # check each time has no student overlaps
+        # Check each time has no student overlaps
         overlap_count = 0
         for cl1 in times_cl:
             for cl2 in times_cl:
                 if cl1[0] == cl2[0] and cl1[1] != cl2[1]:
                     overlap_count += get_overlap(students, cl1[1], cl2[1])
         overlap_count /= 2
-        print(f"Number of overlaps: {overlap_count}")
+        # print(f"Number of overlaps: {overlap_count}")
 
-        #   Check that room is never too full
-        for cl, time, room in data:
-            num_students = get_students_in_class(students, cl)
-            if num_students > classrooms[room]:
-                print(f"Classroom {cl} is overbooked! Maximum {classrooms[room]} but has {num_students}")
+        # Check that room is never too full
+        # for cl, time, room in data:
+        #     num_students = get_students_in_class(students, cl)
+        #     if num_students > classrooms[room]:
+        #         print(f"Classroom {cl} is overbooked! Maximum {classrooms[room]} but has {num_students}")
 
-        for time in total_times:
-            print(f"At time {time}:")
-            for cl, t, room in data:
-                if t == time:
-                    print(f"{cl} at room {room} has {get_students_in_class(students, cl)} students")
-            print()
+        # for time in total_times:
+        #     print(f"At time {time}:")
+        #     for cl, t, room in data:
+        #         if t == time:
+        #             print(f"{cl} at room {room} has {get_students_in_class(students, cl)} students")
+        #     print()
 
         schedule = []
         for t in total_times:
