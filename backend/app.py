@@ -35,7 +35,7 @@ def get_classrooms():
             data.append({"id": int(row[0]),
                          "capacity": row[1],
                          "name": row[2],
-                         "selected": row[3] == "False",
+                         "selected": row[3] == "True",
                          })
         print(data)
     return jsonify(data)
