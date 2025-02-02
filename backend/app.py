@@ -22,7 +22,7 @@ def students():
 @app.route("/make-schedule", methods=['POST'])
 def make_schedule():
     weights = request.json
-    return jsonify(get_data(weights))
+    return stream_with_context(get_data(weights))
 
 
 @app.route("/update-classrooms", methods=['POST'])
