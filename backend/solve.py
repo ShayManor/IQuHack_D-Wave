@@ -109,8 +109,9 @@ class Student:
 
 
 class Room:
-    def __init__(self, id, capacity):
+    def __init__(self, id, index, capacity):
         self.id = id
+        self.index = index
         self.capacity = capacity
 
 
@@ -139,10 +140,13 @@ def read_room_data(filename):
     with open(filename, 'r') as f:
         reader = csv.reader(f)
         next(reader, None)
+        i = 0
         for row in reader:
-            room_id = int(row[0])
-            room_capacity = int(row[1])
-            all_rooms.append(Room(room_id, room_capacity))
+            if row[3] == "True":
+                room_id = int(row[0])
+                room_capacity = int(row[1])
+                all_rooms.append(Room(room_id, i, room_capacity))
+                i += 1
 
     return all_rooms
 
@@ -164,7 +168,7 @@ def get_data(weights):
 
     # print(f"Size: {num_classes * num_rooms * TIME_SLOTS_PER_DAY * days}")
 
-    room_capacities = {r.id: r.capacity for r in rooms}
+    room_capacities = {r.index: r.capacity for r in rooms}
     student_classes = {s.id: s.classes for s in students}
 
     yield json.dumps({"status": "Data loaded"}) + "\n"
@@ -214,13 +218,17 @@ def get_data(weights):
     print(schedule)
 
     data = []  # list[(class, time, room)]
+    all_rooms = read_room_data(ROOM_DATA_FILE)
 
     for row in schedule:
         # x_b_t_d
         b, t, d = row.split('_')[1:]
         clas = classes[int(b)]
         time = int(t)
-        room = int(d)
+
+        room_index = int(d)
+        room = all_rooms[room_index].id
+
         data.append((clas, time, room))
 
     

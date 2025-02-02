@@ -24,7 +24,8 @@ def check_solution(data: list[tuple[str, int, int]], days):  # (class: str, time
         reader = csv.reader(f)
         next(reader, None)
         for row in reader:
-            classrooms[int(row[0])] = int(row[1])
+            if row[3] == "False":
+                classrooms[int(row[0])] = int(row[1])
 
     with open('backend/students.csv', 'r') as f:
         reader = csv.reader(f)
