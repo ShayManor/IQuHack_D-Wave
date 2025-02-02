@@ -135,6 +135,9 @@
 <div class="container mt-5 pt-3">
     <h2 class="section-title">Time Weight Graph & Schedule Creator <div id="notification" style="display: none;"></div></h2>
 
+    <!-- Schedule Result Display (Calendar) -->
+    <div id="schedule-result" class="mt-4"></div>
+
     <div class="row">
         <!-- Graph Column -->
         <div class="col-md-6">
@@ -163,8 +166,6 @@
             </div>
         </div>
     </div>
-    <!-- Schedule Result Display (Calendar) -->
-    <div id="schedule-result" class="mt-4"></div>
 </div>
 
 <!-- Bootstrap Bundle with Popper -->
@@ -507,6 +508,8 @@
         });
 
         resultDiv.appendChild(calendarContainer);
+        resultDiv.appendChild(document.createElement('hr'));
+        resultDiv.scrollIntoView({ behavior: 'smooth' });
     }
 
     /***********************************************
