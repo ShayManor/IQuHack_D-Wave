@@ -2,18 +2,18 @@ import os
 import csv
 import random
 
-NUM_STUDENTS = 500
-TARGET_CLASSES_PER_STUDENT = 6
+NUM_STUDENTS = 300
+TARGET_CLASSES_PER_STUDENT = 5
 CORE_CHANCE = 0.7
 
 STUDENT_DATA_FILE = 'backend/students.csv'
 
 classes = { # classes[subject] = [class1, class2, ...]
-    "science": ["Physics", "Chemistry", "Biology", "Computer Science"],
-    "math": ["Algebra", "Geometry", "Calculus", "Computer Science"],
+    "science": ["Physics", "Computer Science"],
+    "math": ["Algebra", "Calculus", "Computer Science"],
     "history": ["World History", "US History", "European History"],
-    "language": ["Spanish", "French", "German", "Japanese", "Chinese"],
-    "arts": ["Art", "Music", "Drama", "Photography"],
+    "language": ["Spanish", "Chinese"],
+    "arts": ["Art", "Photography"],
     "finance": ["Economics", "Accounting"],
 }
 
