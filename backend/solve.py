@@ -139,11 +139,13 @@ def read_room_data(filename):
     with open(filename, 'r') as f:
         reader = csv.reader(f)
         next(reader, None)
+        i = 0
         for row in reader:
             if row[3] == "True":
-                room_id = int(row[0])
+                room_id = i
                 room_capacity = int(row[1])
                 all_rooms.append(Room(room_id, room_capacity))
+                i += 1
 
     return all_rooms
 
@@ -215,13 +217,17 @@ def get_data(weights):
     print(schedule)
 
     data = []  # list[(class, time, room)]
+    all_rooms = read_room_data(ROOM_DATA_FILE)
 
     for row in schedule:
         # x_b_t_d
         b, t, d = row.split('_')[1:]
         clas = classes[int(b)]
         time = int(t)
-        room = int(d)
+
+        room_index = int(d)
+        room = all_rooms[room_index].id
+
         data.append((clas, time, room))
 
     
