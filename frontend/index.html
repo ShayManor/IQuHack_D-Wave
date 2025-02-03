@@ -109,10 +109,8 @@
         float: right;
         font-size: 12px;
         font-style: normal italic;
-
         width: fit-content;
         padding-bottom: 1.5px;
-
         background: linear-gradient(currentColor 0 0) 0 100%/0% 1px no-repeat;
         animation: loading 3s linear infinite;
     }
@@ -310,34 +308,23 @@
         classroomsData = await response.json();
         // Update classroomsData with the response and re-render
         renderClassroomCheckboxes();
-        // await fetchClassrooms();
       } catch (error) {
         console.error("Error updating classrooms:", error);
       }
     }
 
     /***********************************************
-     * API Call to Create Schedule (unchanged)
+     * API Call to Create Schedule (modified for backend toggle)
      ***********************************************/
-    // async function submitSchedule(payload) {
-    //     console.log("Submitting payload:", payload);
-    //     const response = await fetch("http://localhost:8000/make-schedule", {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(payload)
-    //     });
-    //     if (!response.ok) {
-    //         throw new Error("Network response was not ok");
-    //     }
-    //     return response.json();
-    // }
-
     async function submitSchedule(payload) {
         console.log("Submitting payload:", payload);
+        const useClassical = document.getElementById('toggle-backend').checked;
+        const endpoint = useClassical
+            ? "http://localhost:8000/make-schedule-cqm"
+            : "http://localhost:8000/make-schedule-classic";
+        console.log("Using endpoint:", endpoint);
 
-        const response = await fetch("http://localhost:8000/make-schedule", {
+        const response = await fetch(endpoint, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -346,7 +333,6 @@
         });
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
-        // const output = document.getElementById('output');
         let last_value = null;
 
         let notification_element = document.getElementById('notification');
@@ -354,7 +340,6 @@
         notification_element.style.display = 'block';
 
         while (true) {
-            console.log(last_value);
             const { done, value } = await reader.read();
             if (done) {
                 notification_element.style.display = 'none';
@@ -363,13 +348,9 @@
 
             // Decode the streamed chunk
             const chunk = decoder.decode(value, { stream: true });
-
             // Split the chunk by newlines (in case multiple JSON objects arrive together)
             const lines = chunk.split('\n').filter(line => line.trim() !== '');
-
-            // Last line
             last_value = JSON.parse(lines[lines.length - 1]);
-
             notification_element.textContent = last_value.status;
         }
     }
@@ -432,11 +413,13 @@
       initTimeWeightGraph();
       // Fetch classrooms from the GET endpoint and render checkboxes under the graph.
       fetchClassrooms();
-      // The controls on the right remain unchanged.
+
       // Render Additional Parameters and Time Weight Sliders (for the right column)
       function renderAdditionalParams() {
         const additionalParamsContainer = document.getElementById('additional-params');
         additionalParamsContainer.innerHTML = '';
+
+        // --- Number of Days Slider ---
         const daysDiv = document.createElement('div');
         daysDiv.className = 'mb-3';
         const daysLabel = document.createElement('label');
@@ -465,30 +448,34 @@
         daysDiv.appendChild(daysLabel);
         daysDiv.appendChild(daysRow);
         additionalParamsContainer.appendChild(daysDiv);
-        const additionalDiv = document.createElement('div');
-        additionalDiv.className = 'mb-3';
-        const additionalLabel = document.createElement('label');
-        additionalLabel.htmlFor = 'slider-additional';
-        additionalLabel.className = 'form-label slider-label';
-        // additionalLabel.textContent = 'Additional Parameter (1-5)';
-        const additionalRow = document.createElement('div');
-        additionalRow.className = 'd-flex align-items-center';
-        // const additionalInput = document.createElement('input');
-        // additionalInput.type = 'range';
-        // additionalInput.className = 'form-range flex-grow-1';
-        // additionalInput.min = '1';
-        // additionalInput.max = '5';
-        // additionalInput.value = '3';
-        // additionalInput.id = 'slider-additional';
-        const additionalValue = document.createElement('span');
-        additionalValue.id = 'slider-additional-value';
-        additionalValue.className = 'ms-2';
-        additionalValue.style.width = '30px';
-        additionalRow.appendChild(additionalValue);
-        additionalDiv.appendChild(additionalLabel);
-        additionalDiv.appendChild(additionalRow);
-        additionalParamsContainer.appendChild(additionalDiv);
+
+        // --- Backend Toggle ---
+        const backendDiv = document.createElement('div');
+        backendDiv.className = 'mb-3';
+        // You can use a label to describe the toggle
+        const backendLabel = document.createElement('label');
+        backendLabel.htmlFor = 'toggle-backend';
+        backendLabel.className = 'form-label slider-label';
+        backendLabel.textContent = 'Backend:';
+        // Create a Bootstrap form-switch (toggle)
+        const backendSwitch = document.createElement('div');
+        backendSwitch.className = 'form-check form-switch';
+        const backendToggle = document.createElement('input');
+        backendToggle.className = 'form-check-input';
+        backendToggle.type = 'checkbox';
+        backendToggle.id = 'toggle-backend';
+        // Optionally set a default state (unchecked = Quantum, checked = Classical)
+        const backendSwitchLabel = document.createElement('label');
+        backendSwitchLabel.className = 'form-check-label';
+        backendSwitchLabel.htmlFor = 'toggle-backend';
+        backendSwitchLabel.textContent = 'Classical/CQM';
+        backendSwitch.appendChild(backendToggle);
+        backendSwitch.appendChild(backendSwitchLabel);
+        backendDiv.appendChild(backendLabel);
+        backendDiv.appendChild(backendSwitch);
+        additionalParamsContainer.appendChild(backendDiv);
       }
+
       function renderSliders() {
         const sliderContainer = document.getElementById('slider-container');
         sliderContainer.innerHTML = '';

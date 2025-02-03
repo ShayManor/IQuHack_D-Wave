@@ -1,17 +1,16 @@
 import dimod
 from dwave.system import LeapHybridCQMSampler
 import numpy as np
-
+import time
 import csv
 
 import json
 import check_solution
 
-
 #------------------------------------------------------------------------------#
 OBJECTIVE_WEIGHT = 1
 
-PENALTY_OVERLAPPING = 50
+PENALTY_OVERLAPPING = 75
 PENALTY_CAPACITY = 2
 
 STUDENT_DATA_FILE = 'backend/students.csv'
@@ -36,7 +35,8 @@ def create_exam_scheduling_cqm(
     cqm = dimod.ConstrainedQuadraticModel()
 
     # Precompute the number of students in each class
-    class_student_counts = np.array([len([s for s in range(num_students) if b in student_classes[s]]) for b in range(num_classes)])
+    class_student_counts = np.array(
+        [len([s for s in range(num_students) if b in student_classes[s]]) for b in range(num_classes)])
 
     # Decision Variables: x[b, t, d] -> 1 if class b is scheduled at time t in room d
     x = {(b, t, d): dimod.Binary(f'x_{b}_{t}_{d}')
@@ -153,6 +153,7 @@ def read_room_data(filename):
 
 #------------------------------------------------------------------------------#
 def get_data(weights):
+    start_time = time.time()
     yield json.dumps({"status": "Starting scheduling"}) + "\n"
     print("\nSTARTING SCHEDULING...")
 
@@ -166,7 +167,7 @@ def get_data(weights):
     num_classes = len(classes)
     num_rooms = len(rooms)
 
-    # print(f"Size: {num_classes * num_rooms * TIME_SLOTS_PER_DAY * days}")
+    print(f"Size: {num_classes * num_rooms * TIME_SLOTS_PER_DAY * days}")
 
     room_capacities = {r.index: r.capacity for r in rooms}
     student_classes = {s.id: s.classes for s in students}
@@ -211,7 +212,6 @@ def get_data(weights):
         print("No feasible solutions found.")
         return
 
-
     best_sample = feasaible.first.sample
     schedule = [k for k, val in best_sample.items() if val == 1]
     print("Optimized Exam Schedule:")
@@ -224,14 +224,13 @@ def get_data(weights):
         # x_b_t_d
         b, t, d = row.split('_')[1:]
         clas = classes[int(b)]
-        time = int(t)
+        class_time = int(t)
 
         room_index = int(d)
         room = all_rooms[room_index].id
 
-        data.append((clas, time, room))
+        data.append((clas, class_time, room))
 
-    
     yield json.dumps({"status": "Assembling final schedule"}) + "\n"
     yield json.dumps(check_solution.check_solution(data, days)) + "\n"
-    #------------------------------------------------------------------------------#
+    print(f"Final time: {time.time() - start_time}")

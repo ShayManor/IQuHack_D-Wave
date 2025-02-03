@@ -139,20 +139,23 @@ def compute_cost(schedule, students, class_student_counts, room_capacities,
 
 
 # ------------------------------------------------------------------------------
-# Classical solver using simulated annealing
+# Exact solver using exhaustive search with backtracking
 
-def classical_exam_scheduling(weights, time_limit=5):
+def exhaustive_exam_scheduling(weights, time_limit=600):
     """
     This generator yields JSON messages (status updates and final schedule)
-    while it performs simulated annealing to optimize the exam schedule.
+    while it performs an exhaustive search with backtracking to find the optimal exam schedule.
 
     The `weights` dictionary is expected to have two keys:
       - "days": number of days,
       - "weights": a list of length TIME_SLOTS_PER_DAY containing the weight for each time slot.
+
+    NOTE: This method is exact and guarantees the optimal solution, but its runtime grows exponentially
+          with the number of classes.
     """
     start_time = time.time()
-    yield json.dumps({"status": "Starting scheduling"}) + "\n"
-    print("\nSTARTING SCHEDULING...")
+    yield json.dumps({"status": "Starting exhaustive scheduling"}) + "\n"
+    print("\nSTARTING EXHAUSTIVE SCHEDULING...")
 
     # --- Data loading ---
     yield json.dumps({"status": "Loading user data"}) + "\n"
@@ -180,68 +183,59 @@ def classical_exam_scheduling(weights, time_limit=5):
     total_time_slots = TIME_SLOTS_PER_DAY * days
     time_weights = weights["weights"]  # list of length TIME_SLOTS_PER_DAY
 
-    # --- Initial solution ---
-    # Represent schedule as a dict: for each class b, assign (time_slot, room)
-    schedule = {}
+    # --- Domain reduction: Precompute feasible assignments for each class ---
+    # For this exact search, we only consider (time, room) pairs where the room can fit the class.
+    domain = {}
     for b in range(num_classes):
-        # Try to choose a room that is large enough; if none, choose any room.
-        possible_rooms = [r for r in range(num_rooms) if room_capacities[r] >= class_student_counts[b]]
-        if not possible_rooms:
-            possible_rooms = list(range(num_rooms))
-        t = random.randint(0, total_time_slots - 1)
-        r = random.choice(possible_rooms)
-        schedule[b] = (t, r)
+        domain[b] = []
+        for t in range(total_time_slots):
+            for r in range(num_rooms):
+                if room_capacities[r] >= class_student_counts[b]:
+                    domain[b].append((t, r))
+        if not domain[b]:
+            # If no room is big enough, allow all assignments (they will incur a heavy penalty)
+            for t in range(total_time_slots):
+                for r in range(num_rooms):
+                    domain[b].append((t, r))
 
-    # Evaluate the initial cost.
-    current_cost = compute_cost(schedule, students, class_student_counts,
+    # --- Backtracking setup ---
+    best_schedule = None
+    best_cost = float('inf')
+
+    # We'll keep track of room usage (t, r) to enforce that no two classes share the same room at the same time.
+    room_used = {(t, r): False for t in range(total_time_slots) for r in range(num_rooms)}
+
+    # Define the recursive backtracking function.
+    def backtrack(b, current_schedule):
+        nonlocal best_schedule, best_cost
+        # If all classes have been assigned, evaluate the complete schedule.
+        if b == num_classes:
+            cost = compute_cost(current_schedule, students, class_student_counts,
                                 room_capacities, time_weights, TIME_SLOTS_PER_DAY, total_time_slots)
-    best_schedule = schedule.copy()
-    best_cost = current_cost
+            if cost < best_cost:
+                best_cost = cost
+                best_schedule = current_schedule.copy()
+            return
 
-    # --- Simulated annealing parameters ---
-    T = 100.0  # initial temperature
-    T_min = 1e-3  # minimum temperature
-    alpha = 0.995  # cooling rate
-    max_iterations = 10000
-    iteration = 0
+        # For class b, iterate over all possible (time, room) assignments in its domain.
+        for (t, r) in domain[b]:
+            # Enforce the hard constraint that a room cannot be used by more than one exam at the same time.
+            if room_used[(t, r)]:
+                continue
+            # Assign class b to (t, r).
+            current_schedule[b] = (t, r)
+            room_used[(t, r)] = True
+            backtrack(b + 1, current_schedule)
+            room_used[(t, r)] = False  # Backtrack (undo the assignment)
+
+    # --- Start the exhaustive search ---
     start_time = time.time()
-
-    yield json.dumps({"status": "Starting optimization"}) + "\n"
-    print("STARTING OPTIMIZATION...")
-
-    while T > T_min and iteration < max_iterations and (time.time() - start_time) < time_limit:
-        iteration += 1
-        # Pick a random class to modify.
-        b = random.randint(0, num_classes - 1)
-        current_t, current_r = schedule[b]
-        # Propose a new assignment: change time, room, or both.
-        new_t = current_t
-        new_r = current_r
-        if random.random() < 0.5:
-            new_t = random.randint(0, total_time_slots - 1)
-        if random.random() < 0.5:
-            new_r = random.randint(0, num_rooms - 1)
-        new_schedule = schedule.copy()
-        new_schedule[b] = (new_t, new_r)
-        new_cost = compute_cost(new_schedule, students, class_student_counts,
-                                room_capacities, time_weights, TIME_SLOTS_PER_DAY, total_time_slots)
-        delta = new_cost - current_cost
-
-        # Accept the move if it improves cost or with a Boltzmann probability.
-        if delta < 0 or random.random() < math.exp(-delta / T):
-            schedule = new_schedule
-            current_cost = new_cost
-            if new_cost < best_cost:
-                best_schedule = new_schedule.copy()
-                best_cost = new_cost
-
-        T *= alpha
-
-    print("OPTIMIZATION COMPLETE")
-    yield json.dumps({"status": "Optimization complete"}) + "\n"
+    backtrack(0, {})
+    elapsed = time.time() - start_time
+    yield json.dumps({"status": "Exhaustive search complete", "time": elapsed}) + "\n"
+    print("EXHAUSTIVE SEARCH COMPLETE in {:.2f} seconds".format(elapsed))
 
     # --- Assemble final schedule ---
-    # Produce a list of tuples (class, time_slot, room_id).
     final_schedule = []
     for b, (t, r) in best_schedule.items():
         # Get the class name.
@@ -252,9 +246,9 @@ def classical_exam_scheduling(weights, time_limit=5):
 
     print("Optimized Exam Schedule:")
     print(final_schedule)
+    yield json.dumps({"status": "Assembling final schedule", "schedule": final_schedule}) + "\n"
 
-    yield json.dumps({"status": "Assembling final schedule"}) + "\n"
-    # If you have a check_solution function (as in your original code) call it:
+    # Optionally, if you have a check_solution function, call it:
     try:
         import check_solution
         result = check_solution.check_solution(final_schedule, days)
@@ -262,11 +256,11 @@ def classical_exam_scheduling(weights, time_limit=5):
     except ImportError:
         # Otherwise, just yield the schedule.
         yield json.dumps({"schedule": final_schedule}) + "\n"
-    print(f"Final time: {time.time() - start_time}")
+    print(f"Real final time: {time.time() - start_time}")
 
 
 # ------------------------------------------------------------------------------
-# For testing purposes, you might run the classical solver as a script.
+# For testing purposes, you might run the exact solver as a script.
 if __name__ == "__main__":
     # Example weights dictionary.
     # (Here we assume there are 6 time slots per day; you can adjust the numbers.)
@@ -275,5 +269,5 @@ if __name__ == "__main__":
         "weights": [1.0, 1.5, 2.0, 1.5, 1.0, 0.5]
     }
     # Run the solver and print all JSON status messages.
-    for msg in classical_exam_scheduling(example_weights, time_limit=5):
+    for msg in exhaustive_exam_scheduling(example_weights, time_limit=600):
         print(msg.strip())
