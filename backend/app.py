@@ -4,6 +4,7 @@ from flask import *
 from flask_cors import *
 
 from backend.c_solve import classical_exam_scheduling
+from backend.e_solver import exhaustive_exam_scheduling
 from solve import get_data
 
 app = Flask('Scheduler')
@@ -20,7 +21,7 @@ def students():
     return jsonify(students)
 
 
-@app.route("/make-schedule", methods=['POST'])
+@app.route("/make-schedule-cqm", methods=['POST'])
 def make_schedule():
     weights = request.json
     return stream_with_context(get_data(weights))
@@ -29,6 +30,12 @@ def make_schedule():
 def make_schedule_classic():
     weights = request.json
     return stream_with_context(classical_exam_scheduling(weights))
+
+
+@app.route("/make-schedule-exhaustive", methods=['POST'])
+def make_schedule_exhaustive():
+    weights = request.json
+    return stream_with_context(exhaustive_exam_scheduling(weights))
 
 
 @app.route("/get-classrooms", methods=['GET'])

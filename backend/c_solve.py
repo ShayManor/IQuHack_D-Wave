@@ -150,6 +150,7 @@ def classical_exam_scheduling(weights, time_limit=5):
       - "days": number of days,
       - "weights": a list of length TIME_SLOTS_PER_DAY containing the weight for each time slot.
     """
+    start_time = time.time()
     yield json.dumps({"status": "Starting scheduling"}) + "\n"
     print("\nSTARTING SCHEDULING...")
 
@@ -261,6 +262,7 @@ def classical_exam_scheduling(weights, time_limit=5):
     except ImportError:
         # Otherwise, just yield the schedule.
         yield json.dumps({"schedule": final_schedule}) + "\n"
+    print(f"Final time: {time.time() - start_time}")
 
 
 # ------------------------------------------------------------------------------
