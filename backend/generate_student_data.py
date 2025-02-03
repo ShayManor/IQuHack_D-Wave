@@ -13,8 +13,8 @@ classes = { # classes[subject] = [class1, class2, ...]
     "math": ["Algebra", "Calculus", "Computer Science"],
     "history": ["World History", "US History", "European History"],
     "language": ["Spanish", "Chinese"],
-    # "arts": ["Art", "Photography"],
-    # "finance": ["Economics", "Accounting"],
+    "arts": ["Art", "Photography"],
+    "finance": ["Economics", "Accounting"],
 }
 
 def generate_student_data():
