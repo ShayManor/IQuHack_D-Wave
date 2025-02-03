@@ -32,10 +32,10 @@ Uses D-WAVE's CQM (Constrained Quadratic Model) quantum annealer to build the pe
 - Decision Variables: `x[b, t, d]` -> `1` if class `b` is scheduled at time `t` in room `d`:
 ```python
 x = {(b, t, d): dimod.Binary(f'x_{b}_{t}_{d}')
-        for b in range(num_classes)
-        for t in range(time_slots)
-        for d in range(num_rooms)
-    }
+     for b in range(num_classes)
+     for t in range(time_slots)
+     for d in range(num_rooms)
+}
 ```
 
 ### Contraints
